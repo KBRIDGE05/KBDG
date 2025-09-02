@@ -3,27 +3,18 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>KBridge | 위험물(Dangerous Goods) 가이드 UI v1.0</title>
+  <title>KBridge | 위험물(Dangerous Goods) 가이드 UI</title>
   <meta name="description" content="위험물(DG) 클래스 안내, 라벨, 간단 검색/조회 — IMDG/IATA 참고용 안내 UI" />
   <style>
     :root{
-      --bg:#f6f8fc;           /* 전체 배경 */
-      --card:#ffffff;          /* 카드 배경 */
-      --muted:#64748b;         /* 보조 글자 */
-      --text:#0f172a;          /* 본문 */
-      --brand:#2563eb;         /* 포인트 */
+      --bg:#f6f8fc;
+      --card:#ffffff;
+      --muted:#64748b;
+      --text:#0f172a;
+      --brand:#2563eb;
       --ring: rgba(37,99,235,.35);
       --ok:#16a34a;--warn:#f59e0b;--bad:#ef4444;
-      /* 클래스 대표색 (라벨/아이콘 공통) */
-      --c1:#ff8a00; /* Explosives */
-      --c2:#3b82f6; /* Gases */
-      --c3:#ef4444; /* Flammable liquids */
-      --c4:#fb923c; /* Flammable solids */
-      --c5:#eab308; /* Oxidizer/Organic peroxides */
-      --c6:#64748b; /* Toxic & Infectious */
-      --c7:#f97316; /* Radioactive */
-      --c8:#0ea5e9; /* Corrosive */
-      --c9:#14b8a6; /* Misc */
+      --c1:#ff8a00; --c2:#3b82f6; --c3:#ef4444; --c4:#fb923c; --c5:#eab308; --c6:#64748b; --c7:#f97316; --c8:#0ea5e9; --c9:#14b8a6;
       --shadow: 0 6px 18px rgba(2,6,23,.08), inset 0 1px 0 rgba(255,255,255,.4);
       --radius: 16px;
     }
@@ -32,34 +23,33 @@
     a{color:inherit}
     .container{max-width:1200px;margin:0 auto;padding:24px}
     header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.85);backdrop-filter:saturate(180%) blur(8px); border-bottom:1px solid #e2e8f0}
-    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 24px}
-    .brand{display:flex;align-items:center;gap:12px}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px max(24px, calc((100vw - 1200px)/2 + 24px))}
+    .brand{display:flex;align-items:center;gap:8px}
     .logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg, #111827, #1f2937);display:grid;place-items:center;box-shadow:var(--shadow)}
     .logo::before{content:"K";font-weight:800;color:#fff;letter-spacing:.4px}
-    .brand h1{font-size:16px;margin:0;opacity:.92}
+    .brand h1{font-size:18px;margin:0;line-height:1.2;opacity:.92}
     .tag{font-size:12px;opacity:.7;padding:4px 8px;border:1px solid rgba(148,163,184,.25);border-radius:999px}
 
     /* Hero */
     .hero{display:grid;grid-template-columns:1.15fr .85fr;gap:16px;align-items:stretch;padding:16px 16px 6px}
     @media (max-width: 900px){.hero{grid-template-columns:1fr}}
-    @media (max-width: 900px){.hero{grid-template-columns:1fr}}
-    @media (max-width: 900px){.hero{grid-template-columns:1fr}}
-    @media (max-width: 900px){.hero{grid-template-columns:1fr}}
     .hero-card{background:var(--card); border:1px solid #e5e7eb;border-radius:var(--radius); padding:18px 16px; box-shadow:var(--shadow); display:flex; flex-direction:column; height:100%}
     .hero h2{font-size:26px;line-height:1.3;margin:0 0 10px;letter-spacing:-.01em}
     .hero p{color:var(--muted); margin:0 0 12px; font-size:14px; line-height:1.6}
     .hero .badges{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 14px}
-    .hero .hero-list{margin:4px 0 12px 0;color:var(--text);font-size:14px;line-height:1.6;text-align:left;padding-left:18px;list-style:disc}  
+    .hero .hero-list{margin:4px 0 12px 0;color:var(--text);font-size:14px;line-height:1.6;text-align:left;padding-left:18px;list-style:disc}
     .hero .hero-list li{margin:2px 0}
     .badge{font-size:12px;padding:6px 10px;border-radius:999px;border:1px solid rgba(148,163,184,.2);opacity:.95}
     .note{font-size:12px;color:#6b7280;opacity:.95}
 
     /* Filter bar */
     .filters{position:sticky;top:68px;z-index:40;margin:18px 0 10px;background:#fff;backdrop-filter: blur(0px); border:1px solid #e5e7eb; border-radius:var(--radius); padding:10px; box-shadow:var(--shadow)}
-    .filters .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-    .search{flex:1;display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:10px 12px}
+    .filters .row{display:flex;gap:8px;flex-wrap:nowrap;align-items:center}
+    .search{flex:1 1 auto;display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:10px 12px;min-width:0}
     .search input{flex:1;background:transparent;border:0;outline:0;color:var(--text);font-size:14px}
-    .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border-radius:999px;border:1px solid rgba(148,163,184,.22);cursor:pointer;user-select:none}
+    #classChips{flex:0 0 auto !important;display:flex;gap:6px;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;padding-bottom:4px}
+    .pill{display:inline-flex;align-items:center;gap:6px;padding:6px 8px;border-radius:999px;border:1px solid rgba(148,163,184,.22);cursor:pointer;user-select:none;font-size:12px}
+    .pill svg{width:12px;height:12px}
     .pill[data-active="true"]{box-shadow:0 0 0 3px var(--ring) inset;border-color:transparent}
     .count{margin-left:auto;font-size:13px;color:var(--muted)}
 
@@ -71,7 +61,6 @@
     .card:hover{border-color:rgba(148,163,184,.28)}
     .top{display:flex;align-items:flex-start;gap:12px}
     .icon{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;border:1px solid rgba(2,6,23,.06)}
-    .icon svg{width:24px;height:24px}
     .icon svg{width:24px;height:24px}
     .meta{flex:1;min-width:0}
     .un{font-weight:800;letter-spacing:.5px}
@@ -93,9 +82,7 @@
     .class-card:hover{border-color:rgba(148,163,184,.3)}
     .diamond{width:38px;height:38px;transform:rotate(45deg);border:2px solid rgba(2,6,23,.85);margin:6px auto 4px;position:relative}
     .diamond .num{position:absolute;left:50%;bottom:-18px;transform:translateX(-50%);font-weight:800;font-size:12px}
-    .diamond .num{position:absolute;left:50%;bottom:-18px;transform:translateX(-50%);font-weight:800;font-size:12px}
 
-    /* Color tokens per class for icons/diamonds */
     [data-class="1"] .icon{background:linear-gradient(135deg, rgba(255,138,0,.2), rgba(255,138,0,.05))}
     [data-class="2"] .icon{background:linear-gradient(135deg, rgba(59,130,246,.2), rgba(59,130,246,.05))}
     [data-class="3"] .icon{background:linear-gradient(135deg, rgba(239,68,68,.2), rgba(239,68,68,.05))}
@@ -116,7 +103,6 @@
     .diamond[data-class="8"]{background:linear-gradient(180deg,#111,#0ea5e9)}
     .diamond[data-class="9"]{background:repeating-linear-gradient(45deg, #111 0 8px,#fff 8px 16px)}
 
-    /* Modal */
     .modal{position:fixed;inset:0;display:none;place-items:center;background:rgba(2,6,23,.7);backdrop-filter:blur(6px)}
     .modal[open]{display:grid}
     .modal .sheet{width:min(880px, 92vw);max-height:86vh;overflow:auto;background:#fff;border:1px solid #e5e7eb;border-radius:18px;padding:18px 18px 14px;box-shadow:var(--shadow)}
@@ -128,45 +114,32 @@
     .label-card{background:#fff;border:1px dashed #e2e8f0;border-radius:14px;padding:12px;display:grid;gap:6px}
     .big-diamond{width:90px;height:90px;transform:rotate(45deg);border:3px solid rgba(2,6,23,.85);margin:10px auto 8px;position:relative}
     .big-diamond .num{position:absolute;left:50%;bottom:-28px;transform:translateX(-50%);font-weight:800}
-    .big-diamond .num{position:absolute;left:50%;bottom:-28px;transform:translateX(-50%);font-weight:800}
 
     footer{opacity:.85;padding:26px 0 40px;font-size:12px;color:#64748b}
-    code.k{background:#f8fafc;border:1px solid #e2e8f0;padding:2px 6px;border-radius:6px} 
-  /* --- Hero tightening (v1.0.3) --- */
-    .hero .hero-card h2, .hero-card h2{font-size:22px;line-height:1.35;margin:0 0 8px;letter-spacing:-.01em}
-    .hero .hero-card p{font-size:13px;line-height:1.6;margin:0 0 10px}
-    .hero .badge{font-size:11px;padding:5px 8px}
-    .hero .note{font-size:12px}
-    .hero .hero-list{margin:4px 0 8px 0;color:var(--text);font-size:13px;line-height:1.55;text-align:left;padding-left:18px;list-style:disc}
-    .hero .hero-list li{margin:1px 0}
-    /* --- Mobile optimizations (v1.1) --- */
-    /* 칩 영역 가로 스크롤 & 터치 최적화 */
+    code.k{background:#f8fafc;border:1px solid #e2e8f0;padding:2px 6px;border-radius:6px}
+
+    /* mobile */
     #classChips{overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;padding-bottom:4px}
     .pill{flex:0 0 auto}
-
     @media (max-width: 640px){
       .container{padding:14px}
       .nav{padding:10px 14px}
       .brand h1{font-size:14px}
       .tag{display:none}
-
       .hero{gap:12px;padding:12px 12px 4px}
       .hero-card{padding:14px;height:auto}
       .hero h2{font-size:20px;line-height:1.35;margin:0 0 6px}
       .hero p{font-size:13px;line-height:1.55;margin:0 0 8px}
       .hero .badges{margin:6px 0 10px}
       .hero .hero-list{font-size:13px;line-height:1.55;padding-left:16px;margin:4px 0 8px}
-
       .filters{top:56px;margin:12px 0 8px;padding:8px}
-      .search{padding:10px 10px}
+      .search{padding:10px 10px;min-width:auto;width:100%}
       .search input{font-size:16px}
-
       .grid{grid-template-columns:1fr;gap:12px}
       .top{gap:10px}
       .icon{width:40px;height:40px}
       .icon svg{width:22px;height:22px}
       .btn{padding:8px 10px}
-
       .section h3{font-size:18px}
       .classes{grid-template-columns:repeat(2, minmax(0,1fr));gap:8px}
       footer{padding:20px 0 28px}
@@ -232,51 +205,49 @@
         <h1>KBridge · Dangerous Goods</h1>
         <span class="tag">IMDG / IATA 참고용</span>
       </div>
-      <span class="tag">v1.0</span>
-    </div>
-    <div class="hero container">
-      <div class="hero-card">
-        <h2>위험물(DG) 한눈에 보기</h2>
-        
-        <div class="badges">
-          <span class="badge">Class 1–9 요약</span>
-          <span class="badge">UN 번호/이름 빠른 검색</span>
-          <span class="badge">라벨/표지 미리보기</span>
-        </div>
-        <p class="note">※ 실제 적용은 최신 IMDG Code/IATA DGR 및 개별 운송사 정책을 우선합니다.</p>
-      </div>
-      <div class="hero-card">
-        <h2 class="hero-title">빠른 시작</h2>
-        <ul class="hero-list">
-            <li>아래 <b>검색창</b>에 UN 번호 또는 물질명(한/영)을 입력하세요.</li>
-            <li><b>클래스 칩</b>을 눌러 해당 클래스만 필터링할 수 있습니다.</li>
-            <li>카드를 클릭하면 <b>라벨·포장 그룹·비고</b>가 펼쳐집니다.</li>
-        </ul>
-        <p class="note">데이터는 샘플입니다. <code class="k">data</code> 배열에 항목을 추가하여 확장하세요.</p>
-      </div>
     </div>
   </header>
 
+  <div class="hero container">
+    <div class="hero-card">
+      <h2>위험물(DG) 한눈에 보기</h2>
+      <p>국제 운송 전에 <b>MSDS</b>, 선사/항공사 탑재 조건, <b>포장 지침</b>, <b>라벨·표지</b>를 반드시 확인하세요.</p>
+      <div class="badges">
+        <span class="badge">Class 1–9 요약</span>
+        <span class="badge">UN 번호/이름 빠른 검색</span>
+        <span class="badge">라벨/표지 미리보기</span>
+      </div>
+      <p class="note">※ 실제 적용은 최신 IMDG Code/IATA DGR 및 개별 운송사 정책을 우선합니다.</p>
+    </div>
+
+    <div class="hero-card">
+      <h2>빠른 시작</h2>
+      <ul class="hero-list">
+        <li>아래 <b>검색창</b>에 UN 번호 또는 물질명(한/영)을 입력하세요.</li>
+        <li><b>클래스 칩</b>을 눌러 해당 클래스만 필터링할 수 있습니다.</li>
+        <li>카드를 클릭하면 <b>라벨·포장 그룹·비고</b>가 펼쳐집니다.</li>
+      </ul>
+      <p class="note">데이터는 샘플입니다. <code class="k">data</code> 배열에 항목을 추가하여 확장하세요.</p>
+    </div>
+  </div>
+
   <main class="container">
-    <!-- Filters -->
     <section class="filters" aria-label="검색 및 필터">
       <div class="row">
         <div class="search" role="search">
           <svg aria-hidden="true" width="18" height="18"><use href="#i-search"/></svg>
           <input id="q" placeholder="UN 번호, 한글명, 영어명으로 검색 (예: 1090, 아세톤, Acetone)" autocomplete="off"/>
         </div>
-        <div id="classChips" class="row" style="flex:2"></div>
+        <div id="classChips" class="row" style="flex:1"></div>
         <div class="count" id="count">0건</div>
       </div>
     </section>
 
-    <!-- Results -->
     <section class="section" aria-label="검색 결과">
       <h3>검색/조회 결과</h3>
       <div id="list" class="grid" aria-live="polite"></div>
     </section>
 
-    <!-- Class Guide -->
     <section class="section" aria-label="클래스 안내">
       <h3>클래스 안내 · 라벨 미리보기</h3>
       <div id="classGuide" class="classes"></div>
@@ -287,7 +258,6 @@
     </footer>
   </main>
 
-  <!-- Modal for labels -->
   <dialog id="modal" class="modal" aria-label="라벨 미리보기">
     <div class="sheet">
       <div style="display:flex;align-items:center;gap:10px">
@@ -300,11 +270,6 @@
   </dialog>
 
   <script>
-    // ---- 샘플 데이터 ----
-    /**
-     * 실제 운용 시 아래 data 배열을 확장하세요.
-     * 필드: un(문자열), nameKo, nameEn, cls(정수 또는 '5.1' 등), pg(포장그룹 A/B/C 또는 I/II/III 등), note
-     */
     const data = [
       {un:'1090', nameKo:'아세톤', nameEn:'Acetone', cls:3, pg:'II', note:'인화성 액체. 플라스틱/고무에 영향.'},
       {un:'1203', nameKo:'가솔린(휘발유)', nameEn:'Gasoline', cls:3, pg:'II', note:'정전기·증기 폭발 위험.'},
@@ -321,7 +286,6 @@
       {un:'2915', nameKo:'방사성 물질, Type A', nameEn:'Radioactive material, Type A package', cls:7, pg:'—', note:'방사선 표지/문서 요건.'},
     ];
 
-    // ---- 클래스 메타 ----
     const classMeta = [
       { id:1, title:'Class 1 폭발물', icon:'#i-explosion', desc:'충격·마찰·열에 민감. 세부 분류 1.1~1.6.' },
       { id:2, title:'Class 2 가스', icon:'#i-gas', desc:'2.1 가연성 / 2.2 비가연성 / 2.3 유독성.' },
@@ -334,7 +298,6 @@
       { id:9, title:'Class 9 기타위험', icon:'#i-misc', desc:'리튬배터리·건조얼음 등.' },
     ];
 
-    // ---- 요소 참조 ----
     const elList = document.getElementById('list');
     const elCount = document.getElementById('count');
     const elQ = document.getElementById('q');
@@ -345,7 +308,6 @@
     const mDesc = document.getElementById('mDesc');
     const mLabels = document.getElementById('labels');
 
-    // ---- 클래스 칩 렌더 ----
     const activeClasses = new Set();
     function renderChips(){
       elChips.innerHTML = '';
@@ -366,7 +328,12 @@
       });
     }
 
-    // ---- 카드 생성 ----
+    function iconFor(cls){
+      const c = String(cls).split('.')[0];
+      const m = { '1':'#i-explosion', '2':'#i-gas', '3':'#i-flame', '4':'#i-flamesolid', '5':'#i-oxidizer', '6':'#i-skull', '7':'#i-radiation', '8':'#i-corrosive', '9':'#i-misc' };
+      return `<svg aria-hidden="true"><use href="${m[c]}"/></svg>`;
+    }
+
     function card(item){
       const card = document.createElement('details');
       card.className='card';
@@ -408,13 +375,6 @@
       return card;
     }
 
-    function iconFor(cls){
-      const c = String(cls).split('.')[0];
-      const m = { '1':'#i-explosion', '2':'#i-gas', '3':'#i-flame', '4':'#i-flamesolid', '5':'#i-oxidizer', '6':'#i-skull', '7':'#i-radiation', '8':'#i-corrosive', '9':'#i-misc' };
-      return `<svg aria-hidden="true"><use href="${m[c]}"/></svg>`;
-    }
-
-    // ---- 렌더 ----
     function render(){
       const q = (elQ.value||'').trim().toLowerCase();
       const filtered = data.filter(d=>{
@@ -430,7 +390,6 @@
       elCount.textContent = `${filtered.length}건`;
     }
 
-    // ---- 클래스 안내 카드 ----
     function renderClassGuide(){
       elGuide.innerHTML = '';
       classMeta.forEach(cm=>{
@@ -456,7 +415,6 @@
       mTitle.textContent = cm.title;
       mDesc.textContent = cm.desc + ' · 라벨은 대표 색상/도형 예시입니다.';
       mLabels.innerHTML = '';
-      // 대표 라벨 4종 예시 (실제 라벨 디자인은 규정 참조)
       const ex = [
         {title:'대표 라벨', num: cm.id, cls: cm.id},
         {title:'대체 표기 예시', num: cm.id, cls: cm.id},
@@ -477,7 +435,6 @@
       modal.showModal();
     }
 
-    // ---- 유틸 ----
     function escapeHtml(s){ return String(s).replace(/[&<>"']/g, m=> ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[m]) ); }
     function copyUN(un){ navigator.clipboard?.writeText(`UN ${un}`).then(()=> notify(`UN ${un} 복사 완료`)); }
     function notify(msg){
@@ -488,7 +445,6 @@
       setTimeout(()=> n.remove(), 1400);
     }
 
-    // ---- 초기화 ----
     renderChips();
     render();
     renderClassGuide();
