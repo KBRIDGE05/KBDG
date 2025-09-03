@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="data-go-kr-key" content="d79bdb165fed44fab4874971b2474f6683dc517dc7b2c8085746b6ba450f63ec">
   <title>KBridge | 위험물(Dangerous Goods) 가이드 UI</title>
   <meta name="description" content="위험물(DG) 클래스 안내, 라벨, 간단 검색/조회 — IMDG/IATA 참고용 안내 UI" />
   <style>
@@ -452,3 +453,12 @@
   </script>
 </body>
 </html>
+const CONFIG = {
+  API_URL: 'https://apis.data.go.kr/1192000/DgstInqire3', // ← 데이터포털 "End Point" 그대로
+  SERVICE_KEY: (document.querySelector('meta[name="data-go-kr-key"]')?.content || '').trim(),
+  PAGE_INDEX: 1,
+  NUM_ROWS: 50,
+  USE_JSON: true,
+  NAME_PARAMS: ['korName','chemName','itemName','searchWord']
+};
+
