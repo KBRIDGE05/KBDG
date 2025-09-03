@@ -270,7 +270,7 @@
   </dialog>
 
   <script>
-    const data = [
+    let data = [
       {un:'1090', nameKo:'아세톤', nameEn:'Acetone', cls:3, pg:'II', note:'인화성 액체. 플라스틱/고무에 영향.'},
       {un:'1203', nameKo:'가솔린(휘발유)', nameEn:'Gasoline', cls:3, pg:'II', note:'정전기·증기 폭발 위험.'},
       {un:'1011', nameKo:'부탄', nameEn:'Butane', cls:2, pg:'—', note:'가연성 가스(2.1). 환기 필수.'},
@@ -285,126 +285,6 @@
       {un:'3480', nameKo:'리튬이온 배터리', nameEn:'Lithium ion batteries', cls:9, pg:'—', note:'상태별 포장지시·SoC 제한. 화재 위험.'},
       {un:'2915', nameKo:'방사성 물질, Type A', nameEn:'Radioactive material, Type A package', cls:7, pg:'—', note:'방사선 표지/문서 요건.'},
     ];
-// === [PATCH] 검색 정규화 + MOF CSV 로더 추가 ===
-
-// 유니코드/문장부호 정규화
-const PUNCT = /[\s\-_"'`~!@#$%^&*()\[\]{};:,./?+|·<>％%]/g;
-const COMBINING = /[\u0300-\u036f]/g;
-function norm(s){
-  return String(s ?? '')
-    .normalize('NFKC')
-    .toLowerCase()
-    .replace(COMBINING, '')
-    .replace(PUNCT, '');
-}
-
-// 검색용 건초더미(cache)
-const hayCache = new WeakMap();
-function buildHay(d){
-  const extras = [`un${d.un}`, `un-${d.un}`, `un ${d.un}`, String(d.un)];
-  const pack = [d.un, d.nameKo, d.nameEn, ...(d.aliases||[]), ...extras].filter(Boolean).join(' ');
-  return norm(pack);
-}
-function getHay(d){
-  if(!hayCache.has(d)) hayCache.set(d, buildHay(d));
-  return hayCache.get(d);
-}
-
-// 토큰 포함 검색
-function matchItem(item, qRaw){
-  if(!qRaw) return true;
-  const hay = getHay(item);
-  const qn = norm(qRaw);
-  if(hay.includes(qn)) return true;
-  const tokens = qRaw.trim().split(/\s+/).map(norm).filter(Boolean);
-  return tokens.length ? tokens.every(t => hay.includes(t)) : true;
-}
-
-// --------- CSV 파서 & 인제스트 (헤더 자동 매핑) ---------
-function parseCSV(text){
-  const rows=[]; let i=0; const len=text.length;
-  let cur=''; let row=[]; let inQ=false;
-  function pushCell(){ row.push(cur); cur=''; }
-  function pushRow(){ rows.push(row); row=[]; }
-  while(i<len){
-    const ch=text[i];
-    if(inQ){
-      if(ch=='"'){
-        if(text[i+1]=='"'){ cur+='"'; i++; } else { inQ=false; }
-      }else{ cur+=ch; }
-    }else{
-      if(ch=='"'){ inQ=true; }
-      else if(ch==','){ pushCell(); }
-      else if(ch=='\n'){ pushCell(); pushRow(); }
-      else if(ch=='\r'){ /* skip */ }
-      else{ cur+=ch; }
-    }
-    i++;
-  }
-  if(cur!=='' || row.length){ pushCell(); pushRow(); }
-  return rows;
-}
-function normalizeHeaders(hs){
-  return hs.map(h=> norm(h)
-    .replace('un','유엔번호')
-    .replace('ko','한글물질명')
-    .replace('korean','한글물질명')
-    .replace('kor','한글물질명')
-    .replace('kr','한글물질명')
-    .replace('hangul','한글물질명')
-    .replace('name','영문물질명')
-    .replace('en','영문물질명')
-    .replace('eng','영문물질명')
-  );
-}
-function pickIndex(headers, targets){
-  for(let idx=0; idx<headers.length; idx++){
-    const h=headers[idx];
-    if(targets.some(t => h.includes(t))) return idx;
-  }
-  return -1;
-}
-function ingestRowsToData(rows){
-  if(!rows.length) return 0;
-  const headers = normalizeHeaders(rows[0]);
-  const idxUN  = pickIndex(headers, ['유엔번호','unno','unnumber','un']);
-  const idxKO  = pickIndex(headers, ['한글물질명','한글명','국문','kor','korean','hangul']);
-  const idxEN  = pickIndex(headers, ['영문물질명','영문명','english','propershippingname','psn','name']);
-  const idxCLS = pickIndex(headers, ['class','위험등급','hazardclass','imdgclass','adrclass']);
-  const temp = [];
-  for(let r=1; r<rows.length; r++){
-    const row = rows[r];
-    if(!row || !row.length) continue;
-    const un = String(row[idxUN]||'').match(/\d{3,4}/)?.[0];
-    const nameKo = (row[idxKO]||'').trim();
-    const nameEn = (row[idxEN]||'').trim();
-    const cls = (idxCLS>=0 ? (row[idxCLS]||'').toString().trim() : '');
-    if(!un || (!nameKo && !nameEn)) continue;
-    temp.push({un:String(un).padStart(4,'0'), nameKo, nameEn, cls: (cls||'') });
-  }
-  if(temp.length){
-    // data는 const 배열이므로, 재할당 대신 내용을 교체
-    data.splice(0, data.length, ...temp);
-    return temp.length;
-  }
-  return 0;
-}
-// 동일 경로의 mof.csv 자동 로드 시도
-(async function tryLoadMof(){
-  try{
-    const res = await fetch('mof.csv', {cache:'no-store'});
-    if(res.ok){
-      const txt = await res.text();
-      const rows = parseCSV(txt);
-      const added = ingestRowsToData(rows);
-      if(added){ render(); console.log('[MOF] CSV loaded', added); }
-    }else{
-      console.log('[MOF] mof.csv not found (optional).');
-    }
-  }catch(err){
-    console.warn('[MOF] load failed:', err);
-  }
-})();
 
     const classMeta = [
       { id:1, title:'Class 1 폭발물', icon:'#i-explosion', desc:'충격·마찰·열에 민감. 세부 분류 1.1~1.6.' },
@@ -427,6 +307,34 @@ function ingestRowsToData(rows){
     const mTitle = document.getElementById('mTitle');
     const mDesc = document.getElementById('mDesc');
     const mLabels = document.getElementById('labels');
+
+
+    // === 검색 정규화/매칭 유틸 추가 ===
+    const PUNCT = /[\s\-_"'`~!@#$%^&*()\[\]{};:,./?+|·<>％%]/g;
+    const COMBINING = /[\u0300-\u036f]/g;
+    function norm(s){
+      return String(s ?? '').normalize('NFKC').toLowerCase().replace(COMBINING,'').replace(PUNCT,'');
+    }
+    const hayCache = new WeakMap();
+    function buildHay(item){
+      const extras = [`un${item.un}`, `un-${item.un}`, `un ${item.un}`, String(item.un)];
+      const pack = [item.un, item.nameKo, item.nameEn, ...(item.aliases||[]), ...extras].filter(Boolean).join(' ');
+      return norm(pack);
+    }
+    function getHay(item){
+      if(!hayCache.has(item)) hayCache.set(item, buildHay(item));
+      return hayCache.get(item);
+    }
+    function matchItem(item, qRaw){
+      if(!qRaw) return True;
+      const hay = getHay(item);
+      const nq = norm(qRaw);
+      if(hay.includes(nq)) return true;
+      const tokens = qRaw.trim().split(/\s+/).map(norm).filter(Boolean);
+      return tokens.length ? tokens.every(t=> hay.includes(t)) : true;
+    }
+
+
 
     const activeClasses = new Set();
     function renderChips(){
@@ -496,26 +404,33 @@ function ingestRowsToData(rows){
     }
 
     
-function render(){
-  const q = (elQ.value||'').trim();
-  const filtered = data.filter(d=>{
-    const classOk = activeClasses.size===0 || activeClasses.has(String((d.cls+'').split('.')[0]));
-    if(!classOk) return false;
-    return matchItem(d, q);
-  }).sort((a,b)=> {
-    const nq = norm(q);
-    const aExact = nq && norm(String(a.un)) === nq;
-    const bExact = nq && norm(String(b.un)) === nq;
-    if(aExact && !bExact) return -1;
-    if(bExact && !aExact) return 1;
-    return String(a.un).localeCompare(String(b.un));
-  });
+    function render(){
+      const q = (elQ.value||'');
+      const filtered = data.filter(d=>{
+        const classOk = activeClasses.size===0 || activeClasses.has(String((d.cls+'').split('.')[0]));
+        if(!classOk) return false;
+        return matchItem(d, q);
+      }).sort((a,b)=>{
+        const nq = norm(q);
+        const aExact = nq && norm(String(a.un))===nq;
+        const bExact = nq && norm(String(b.un))===nq;
+        if(aExact && !bExact) return -1;
+        if(bExact && !aExact) return 1;
+        return String(a.un).localeCompare(String(b.un));
+      });
 
-  elList.innerHTML = '';
-  filtered.forEach(item=> elList.appendChild(card(item)) );
-  elCount.textContent = `${filtered.length}건`;
-}
+      elList.innerHTML = '';
+      filtered.forEach(item=> elList.appendChild(card(item)) );
+      elCount.textContent = `${filtered.length}건`;
+    }
+ ${d.nameKo} ${d.nameEn}`.toLowerCase();
+        return hay.includes(q);
+      }).sort((a,b)=> a.un.localeCompare(b.un));
 
+      elList.innerHTML = '';
+      filtered.forEach(item=> elList.appendChild(card(item)) );
+      elCount.textContent = `${filtered.length}건`;
+    }
 
     function renderClassGuide(){
       elGuide.innerHTML = '';
@@ -572,7 +487,103 @@ function render(){
       setTimeout(()=> n.remove(), 1400);
     }
 
-    renderChips();
+    
+    // === MOF CSV 로더 (EUC-KR/UTF-8 자동 처리) ===
+    async function tryDecode(buf, enc){
+      try{ return new TextDecoder(enc).decode(buf); }catch(_){ return null; }
+    }
+    async function fetchTextSmart(url){
+      const res = await fetch(url);
+      if(!res.ok) throw new Error(res.status+' '+res.statusText);
+      const buf = await res.arrayBuffer();
+      // 1) UTF-8 시도
+      let t = await tryDecode(buf, 'utf-8');
+      if(t && t.includes('유엔번호')) return t;
+      // 2) EUC-KR 시도
+      t = await tryDecode(buf, 'euc-kr') || t;
+      if(t && t.includes('유엔번호')) return t;
+      // 3) MS949 시도
+      t = await tryDecode(buf, 'ms949') || t;
+      return t;
+    }
+
+    function parseCSV(text){
+      const rows=[]; let i=0; const len=text.length;
+      let cur=''; let row=[]; let inQ=false;
+      function pushCell(){ row.push(cur); cur=''; }
+      function pushRow(){ rows.push(row); row=[]; }
+      while(i<len){
+        const ch=text[i];
+        if(inQ){
+          if(ch==='"'){
+            if(text[i+1]==='"'){ cur+='"'; i++; } else { inQ=false; }
+          }else{ cur+=ch; }
+        }else{
+          if(ch==='"'){ inQ=true; }
+          else if(ch===','){ pushCell(); }
+          else if(ch==='\n'){ pushCell(); pushRow(); }
+          else if(ch==='\r'){ /* skip */ }
+          else{ cur+=ch; }
+        }
+        i++;
+      }
+      if(cur!=='' || row.length){ pushCell(); pushRow(); }
+      return rows;
+    }
+    function normalizeHeaders(hs){
+      return hs.map(h => norm(h)
+        .replace('un','유엔번호')
+        .replace('ko','한글물질명')
+        .replace('korean','한글물질명')
+        .replace('kor','한글물질명')
+        .replace('hangul','한글물질명')
+        .replace('name','영문물질명')
+        .replace('en','영문물질명')
+        .replace('eng','영문물질명')
+      );
+    }
+    function pickIndex(headers, targets){
+      for(let i=0;i<headers.length;i++){
+        const h=headers[i];
+        if(targets.some(t => h.includes(t))) return i;
+      }
+      return -1;
+    }
+    function ingestRows(rows){
+      if(!rows.length) return 0;
+      const headers = normalizeHeaders(rows[0]);
+      const idxUN  = pickIndex(headers, ['유엔번호','unno','unnumber','un']);
+      const idxKO  = pickIndex(headers, ['한글물질명','한글명','국문','kor','korean','hangul']);
+      const idxEN  = pickIndex(headers, ['영문물질명','영문명','english','propershippingname','psn','name']);
+      const idxCLS = pickIndex(headers, ['class','위험등급','hazardclass','imdgclass','adrclass']);
+      let added=0;
+      for(let r=1;r<rows.length;r++){
+        const row = rows[r];
+        if(!row || !row.length) continue;
+        const un = String(row[idxUN]||'').match(/\d{3,4}/)?.[0];
+        const nameKo = (row[idxKO]||'').trim();
+        const nameEn = (row[idxEN]||'').trim();
+        const cls = (idxCLS>=0 ? (row[idxCLS]||'').toString().trim() : '');
+        if(!un || (!nameKo && !nameEn)) continue;
+        data.push({un:String(un).padStart(4,'0'), nameKo, nameEn, cls});
+        added++;
+      }
+      return added;
+    }
+    async function loadMOF(){
+      try{
+        const t = await fetchTextSmart('mof.csv');
+        if(!t) return;
+        const rows = parseCSV(t);
+        const added = ingestRows(rows);
+        document.getElementById('count')?.insertAdjacentHTML('afterend', `<span style="font-size:12px;color:var(--muted);margin-left:8px">(CSV 로드 +${added})</span>`);
+        render();
+      }catch(err){
+        console.warn('MOF CSV load failed:', err);
+      }
+    }
+    loadMOF();
+renderChips();
     render();
     renderClassGuide();
     elQ.addEventListener('input', render);
