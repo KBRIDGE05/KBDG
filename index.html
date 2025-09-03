@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ko">
 <head>
-  <meta name="data-go-kr-key" content="d79bdb165fed44fab4874971b2474f6683dc517dc7b2c8085746b6ba450f63ec">>
+  <meta name="data-go-kr-key" content="d79bdb165fed44fab4874971b2474f6683dc517dc7b2c8085746b6ba450f63ec">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>KBridge | 위험물(Dangerous Goods) 가이드 UI</title>
@@ -452,110 +452,193 @@
     elQ.addEventListener('input', render);
   </script>
 
-<!-- KBridge: Data enhancer (CSV + DgstInqire3 API), UI untouched -->
+<!-- KBDG: keep UI, fix search, load full data (mof.csv + DGST API) -->
 <script>
 (function(){
-  if (window.__KBDG_DGST__) return; window.__KBDG_DGST__ = true;
+  if (window.__KBDG_FIX__) return; window.__KBDG_FIX__ = true;
+
+  // ====== Config ======
   const CONFIG = {
     SERVICE_KEY: (document.querySelector('meta[name="data-go-kr-key"]')?.content || '').trim(),
-    API_ENDPOINTS: [
-      'https://apis.data.go.kr/1192000/DgstInqire3/Info'
-    ],
-    PAGE_INDEX: 1, NUM_ROWS: 50,
+    API_URL: 'https://apis.data.go.kr/1192000/DgstInqire3/Info',
     MOF_CSV_PATH: 'mof.csv'
   };
 
-  // --- small utils ---
-  const PUNCT=/[\s\-_"'`~!@#$%^&*()\[\]{};:,./?+|·<>％%]/g, COMB=/[\u0300-\u036f]/g;
-  const norm=s=>String(s??'').normalize('NFKC').toLowerCase().replace(COMB,'').replace(PUNCT,'');
+  // ====== Utilities ======
+  const PUNCT=/[\\s\\-_"'`~!@#$%^&*()\\[\\]{};:,./?+|·<>％%]/g, COMB=/[\\u0300-\\u036f]/g;
+  const norm = s => String(s??'').normalize('NFKC').toLowerCase().replace(COMB,'').replace(PUNCT,'');
   function parseCSV(t){const r=[];let i=0,l=t.length,c='',R=[],q=!1;function pc(){R.push(c);c='';}function pr(){r.push(R);R=[];}
     while(i<l){const h=t[i];if(q){if(h=='"'){if(t[i+1]=='"'){c+='"';i++;}else{q=!1;}}else{c+=h;}}else{if(h=='"'){q=!0;}else if(h==','){pc();}
-    else if(h=='\n'){pc();pr();}else if(h=='\r'){}else{c+=h;}}i++;}if(c!==''||R.length){pc();pr();}return r;}
+    else if(h=='\\n'){pc();pr();}else if(h=='\\r'){}else{c+=h;}}i++;}if(c!==''||R.length){pc();pr();}return r;}
   const normalizeHeaders=hs=>hs.map(h=>norm(h).replace('un','유엔번호').replace('unnumber','유엔번호').replace('unno','유엔번호')
     .replace('ko','한글물질명').replace('korean','한글물질명').replace('kor','한글물질명').replace('hangul','한글물질명')
     .replace('name','영문물질명').replace('en','영문물질명').replace('english','영문물질명').replace('propershippingname','영문물질명').replace('psn','영문물질명')
     .replace('class','위험등급').replace('hazardclass','위험등급'));
   function pickIndex(H,T){for(let i=0;i<H.length;i++){if(T.some(t=>H[i].includes(t)))return i;}return -1;}
-  function mergeCSV(rows){
-    if(!Array.isArray(window.data)) window.data = [];
+
+  // ====== Target data array resolver ======
+  function getDataRef(){
+    try{
+      if (typeof data !== 'undefined' && Array.isArray(data)) return data; // app's array
+    }catch(_){}
+    if (Array.isArray(window.data)) return window.data;
+    window.data = [];
+    return window.data;
+  }
+
+  // ====== CSV merge into dataRef ======
+  function mergeCSVRows(rows, dataRef){
     const H = normalizeHeaders(rows[0]||[]);
     const iU=pickIndex(H,['유엔번호']), iK=pickIndex(H,['한글물질명','한글명','국문']), iE=pickIndex(H,['영문물질명','영문명']), iC=pickIndex(H,['위험등급']);
-    const key=o=>`${String(o.un).padStart(4,'0')}|${o.nameKo}|${o.nameEn}`; const seen=new Set(window.data.map(key)); let add=0;
-    for(let r=1;r<(rows?.length||0);r++){const row=rows[r]; if(!row||!row.length) continue;
-      const un=String(row[iU]||'').match(/\d{3,4}/)?.[0]; const nameKo=(row[iK]||'').toString().trim(); const nameEn=(row[iE]||'').toString().trim();
-      const cls=(iC>=0?(row[iC]||'').toString().trim():''); if(!un||(!nameKo&&!nameEn)) continue; const o={un:String(un).padStart(4,'0'), nameKo, nameEn};
-      if(cls) o.cls=cls; const k=key(o); if(!seen.has(k)){ window.data.push(o); seen.add(k); add++; } }
-    return add;
+    const key=o=>`${String(o.un).padStart(4,'0')}|${o.nameKo}|${o.nameEn}`; const seen=new Set(dataRef.map(key)); let added=0;
+    for(let r=1;r<(rows?.length||0);r++){
+      const row=rows[r]; if(!row||!row.length) continue;
+      const un=String(row[iU]||'').match(/\\d{3,4}/)?.[0];
+      const nameKo=(row[iK]||'').toString().trim();
+      const nameEn=(row[iE]||'').toString().trim();
+      const cls=(iC>=0?(row[iC]||'').toString().trim():'');
+      if(!un||(!nameKo&&!nameEn)) continue;
+      const obj={un:String(un).padStart(4,'0'), nameKo, nameEn}; if(cls) obj.cls=cls;
+      const k=key(obj); if(!seen.has(k)){ dataRef.push(obj); seen.add(k); added++; }
+    }
+    return added;
   }
   async function tryDecode(ab,enc){try{const td=new TextDecoder(enc);const text=td.decode(ab);return{enc,rows:parseCSV(text)}}catch(_){return{enc,rows:[]}}}
-  async function loadCSV(p){try{const res=await fetch(p,{cache:'no-store'}); if(!res.ok) throw new Error(res.status);
-    const ab=await res.arrayBuffer(); const tries=[await tryDecode(ab,'utf-8'),await tryDecode(ab,'euc-kr'),await tryDecode(ab,'ms949')];
-    const best=tries.sort((a,b)=>(b.rows?.length||0)-(a.rows?.length||0))[0]; const add=mergeCSV(best.rows||[]);
-    if(add>0 && typeof window.render==='function') window.render(); console.log(`[KBDG] CSV ${p} via ${best.enc}, +${add}`);
-  }catch(e){ console.warn('[KBDG] CSV load skipped:', e.message); }}
+  async function loadCSV(path, dataRef){
+    try{
+      const res = await fetch(path, {cache:'no-store'});
+      if(!res.ok) throw new Error(res.status+' '+res.statusText);
+      const ab = await res.arrayBuffer();
+      const tries = [await tryDecode(ab,'utf-8'), await tryDecode(ab,'euc-kr'), await tryDecode(ab,'ms949')];
+      const best = tries.sort((a,b)=> (b.rows?.length||0)-(a.rows?.length||0))[0];
+      const add = mergeCSVRows(best.rows||[], dataRef);
+      console.log(`[KBDG] CSV ${path} via ${best.enc}, +${add}`);
+      if (add>0 && typeof window.render==='function') window.render();
+    }catch(e){ console.warn('[KBDG] CSV load skipped:', e.message); }
+  }
 
+  // ====== API fetch by UN ======
   function qs(o){return Object.keys(o).map(k=>`${encodeURIComponent(k)}=${encodeURIComponent(o[k])}`).join('&');}
   function mapItem(x){
-    const g=(o,ks)=>{for(const k of ks){if(o && o[k]!=null && String(o[k]).trim()!=='') return String(o[k]).trim();} return '';};
-    let un=g(x,['unno','UNNO','unNo','un','unNumber']), ko=g(x,['imdgNm','korName','kornm']), en=g(x,['imdgEngNm','engName']);
-    let cls=g(x,['imdgGradCd','class','hazardClass']); if(un) un=String(un).match(/\d{3,4}/)?.[0]||'';
+    const g=(o,ks)=>{for(const k of ks){if(o&&o[k]!=null&&String(o[k]).trim()!=='')return String(o[k]).trim();}return'';};
+    let un=g(x,['unno','unNo','UNNO','un']); let ko=g(x,['imdgNm','korName']); let en=g(x,['imdgEngNm','engName']); let cls=g(x,['imdgGradCd','class']);
+    if(un) un = (String(un).match(/\\d{3,4}/)||[''])[0];
     const obj={un:un?String(un).padStart(4,'0'):undefined, nameKo:ko||'', nameEn:en||'', cls:cls||''};
     return (obj.un||obj.nameKo||obj.nameEn)?obj:null;
   }
-  async function fetchUN(un){
-    if(!CONFIG.SERVICE_KEY || !CONFIG.API_ENDPOINTS.length) return null;
-    for(const ep of CONFIG.API_ENDPOINTS){
-      try{
-        const base = ep.replace(/\?+.*/, '');
-        const url = `${base}?${qs({serviceKey:CONFIG.SERVICE_KEY,pageNo:1,numOfRows:50,unno:un})}`;
-        const res = await fetch(url, {cache:'no-store'});
-        if(!res.ok) continue;
-        const txt = await res.text();
-        const xml = new DOMParser().parseFromString(txt, 'text/xml');
-        const items = Array.from(xml.getElementsByTagName('item')).map(n=>{
-          const o={}; Array.from(n.children).forEach(c=> o[c.tagName]=c.textContent); return o;
-        });
-        const mapped = items.map(mapItem).filter(Boolean);
-        if(mapped.length) return mapped;
-      }catch(_){}
-    }
-    return null;
+  async function fetchUNFromAPI(un){
+    if(!CONFIG.SERVICE_KEY || !CONFIG.API_URL) return null;
+    try{
+      const base = CONFIG.API_URL.replace(/\\?+.*/, '');
+      const params = { serviceKey: CONFIG.SERVICE_KEY, pageNo: 1, numOfRows: 50, unno: un };
+      const url = `${base}?${qs(params)}`; // XML
+      const res = await fetch(url, {cache:'no-store'});
+      if(!res.ok) throw new Error(res.status+' '+res.statusText);
+      const txt = await res.text();
+      const xml = new DOMParser().parseFromString(txt, 'text/xml');
+      const items = Array.from(xml.getElementsByTagName('item')).map(n=>{
+        const o={}; Array.from(n.children).forEach(c=> o[c.tagName]=c.textContent); return o;
+      });
+      const mapped = items.map(mapItem).filter(Boolean);
+      return mapped;
+    }catch(e){ console.warn('[KBDG] API fetch failed:', e.message); return null; }
   }
   async function fetchGithubUN(un){
     try{
-      const res=await fetch(`https://raw.githubusercontent.com/tantalor/un/master/data/${String(un).padStart(4,'0')}.json`, {cache:'no-store'});
-      if(!res.ok) return null; const j=await res.json();
+      const url=`https://raw.githubusercontent.com/tantalor/un/master/data/${String(un).padStart(4,'0')}.json`;
+      const res=await fetch(url,{cache:'no-store'}); if(!res.ok) return null;
+      const j=await res.json();
       return [{un:String(un).padStart(4,'0'), nameKo:'', nameEn:(j.description||j.name||''), cls:(j.class||'')}];
     }catch(_){ return null; }
   }
-  function dedupMerge(list){
-    if(!Array.isArray(window.data)) window.data = [];
-    const key=o=>`${String(o.un||'').padStart(4,'0')}|${o.nameKo||''}|${o.nameEn||''}`; const seen=new Set(window.data.map(key)); let m=0;
-    for(const o of (list||[])){ if(!o||!o.un) continue; const k=key(o); if(!seen.has(k)){ window.data.push(o); seen.add(k); m++; } }
-    if(m>0 && typeof window.render==='function') window.render(); return m;
-  }
-  function getInput(){ return document.querySelector('#q') || document.querySelector('input[type="search"]') || document.querySelector('input[type="text"]'); }
-  async function ensureByQuery(q){
-    if(!q) return 0;
-    const m = String(q).match(/^\s*(?:un\s*-?\s*)?(\d{3,4})\s*$/i);
-    if(m){
-      const un = m[1].padStart(4,'0');
-      if((window.data||[]).some(r => String(r.un).padStart(4,'0')===un)) return 0;
-      let rows = await fetchUN(un);
-      if((!rows||!rows.length)) rows = await fetchGithubUN(un);
-      return dedupMerge(rows);
+  function dedupMerge(list, dataRef){
+    const key=o=>`${String(o.un||'').padStart(4,'0')}|${o.nameKo||''}|${o.nameEn||''}`;
+    const seen=new Set(dataRef.map(key)); let merged=0;
+    for(const o of (list||[])){
+      if(!o||!o.un) continue;
+      const k=key(o); if(!seen.has(k)){ dataRef.push(o); seen.add(k); merged++; }
     }
-    return 0;
+    if(merged>0 && typeof window.render==='function') window.render();
+    return merged;
   }
 
-  document.addEventListener('DOMContentLoaded', function(){
-    loadCSV(CONFIG.MOF_CSV_PATH);
-    const inp = getInput();
-    if(inp){
+  // ====== Improved render override (tolerant search) ======
+  function installRenderOverride(dataRef){
+    try{
+      const elQ = document.getElementById('q');
+      const elList = document.getElementById('list');
+      const elCount = document.getElementById('count');
+      // activeClasses, card() come from original script
+      const originalRender = window.render;
+
+      function hay(d){
+        return norm([d.un, d.nameKo, d.nameEn, `un${d.un}`, `un-${d.un}`, `un ${d.un}`].filter(Boolean).join(' '));
+      }
+      const cache = new WeakMap();
+      function getHay(d){ if(!cache.has(d)) cache.set(d, hay(d)); return cache.get(d); }
+      function matchItem(d, qRaw){
+        if(!qRaw) return true;
+        const H = getHay(d);
+        const qn = norm(qRaw);
+        if(H.includes(qn)) return true;
+        const tokens = qRaw.trim().split(/\\s+/).map(norm).filter(Boolean);
+        return tokens.length ? tokens.every(t => H.includes(t)) : true;
+      }
+
+      window.render = function(){
+        const q = (elQ?.value||'').trim();
+        const filtered = dataRef.filter(d=>{
+          const classOk = (typeof activeClasses!=='undefined' ? (activeClasses.size===0 || activeClasses.has(String((d.cls+'').split('.')[0]))) : true);
+          if(!classOk) return false;
+          return matchItem(d, q);
+        }).sort((a,b)=>{
+          const nq = norm(q);
+          const aExact = nq && norm(String(a.un))===nq;
+          const bExact = nq && norm(String(b.un))===nq;
+          if(aExact && !bExact) return -1;
+          if(bExact && !aExact) return 1;
+          return String(a.un).localeCompare(String(b.un));
+        });
+
+        if(elList){
+          elList.innerHTML = '';
+          filtered.forEach(item=> elList.appendChild(card(item)) );
+        }
+        if(elCount) elCount.textContent = `${filtered.length}건`;
+      };
+
+      // Ensure our render runs last on input events
+      if(elQ) elQ.addEventListener('input', ()=> window.render());
+      // And re-run once now to sync
+      window.render();
+    }catch(e){
+      console.warn('[KBDG] render override failed:', e.message);
+    }
+  }
+
+  // ====== Boot ======
+  document.addEventListener('DOMContentLoaded', async function(){
+    const dataRef = getDataRef();
+    // 1) Load CSV
+    loadCSV(CONFIG.MOF_CSV_PATH, dataRef);
+    // 2) Install better render that keeps UI
+    installRenderOverride(dataRef);
+    // 3) On-demand enrichment for missing UNs
+    const elQ = document.getElementById('q');
+    if(elQ){
       let t=null;
-      inp.addEventListener('input', e=>{
-        clearTimeout(t); const q=e.target.value;
-        t=setTimeout(()=>{ ensureByQuery(q); }, 300);
+      elQ.addEventListener('input', async (e)=>{
+        clearTimeout(t);
+        const v = e.target.value;
+        const m = String(v).match(/^\\s*(?:un\\s*-?\\s*)?(\\d{3,4})\\s*$/i);
+        if(!m) return;
+        const un = m[1].padStart(4,'0');
+        if(dataRef.some(d => String(d.un).padStart(4,'0')===un)) return;
+        t = setTimeout(async ()=>{
+          let rows = await fetchUNFromAPI(un);
+          if((!rows||!rows.length)) rows = await fetchGithubUN(un);
+          if(rows && rows.length) dedupMerge(rows, dataRef);
+        }, 300);
       });
     }
   });
