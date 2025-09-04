@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ko">
+<html lang='ko'>
 <head>
   <meta name="data-go-kr-key" content="d79bdb165fed44fab4874971b2474f6683dc517dc7b2c8085746b6ba450f63ec">
   <meta charset="utf-8" />
@@ -148,6 +148,7 @@
   </style>
 </head>
 <body>
+
   <!-- SVG 아이콘 심볼 (재사용) -->
   <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden">
     <symbol id="i-explosion" viewBox="0 0 24 24">
@@ -203,7 +204,7 @@
     <div class="nav">
       <div class="brand">
         <div class="logo" aria-label="KBridge 케이브릿지 주식회사 로고"></div>
-        <h1>KBridge · Dangerous Goods</h1>
+        <h1>DG 정보 조회 - KBRIDGE 제작</h1>
         <span class="tag">IMDG / IATA 참고용</span>
       </div>
     </div>
@@ -452,176 +453,177 @@
     elQ.addEventListener('input', render);
   </script>
 
-<!-- KBridge FINAL PATCH: UI kept; CSV+API; fixed render & data binding -->
+  <!-- Inlined ALL ROWS dataset + loader (UI unchanged) -->
+  
+<script id="mof-json" type="application/json">[["1001","아세틸렌, 용해","Acetylene, dissolved","2.1"],["1005","암모니아(가스)","Ammonia",""],["1017","염소(기체)","Chlorine",""],["1072","산소, 압축","Oxygen, compressed","2.2"],["1075","액화석유가스(LPG)","Petroleum gases, liquefied","2.1"],["1090","아세톤","Acetone",""],["1170","에틸알코올, 60%","Ethyl alcohol, 60%",""],["1170","에틸알코올","Ethanol",""],["1193","메틸에틸케톤","2-Butanone",""],["1202","경유","Disel oil",""],["1203","휘발유","Unleaded gasoline",""],["1208","노르말헥산","Hexane",""],["1208","메틸(3-)펜탄","3-Methylpentane",""],["1208","디메틸부탄","2-2.Dimethylbutane",""],["1208","2-메틸펜탄","2-Methylpentane",""],["1208","2,2-디메틸부탄","2,2-Dimethylbutane",""],["1219","이소프로필알코올","2-Propanol",""],["1230","메탄올-디(1)","Methanol-d(1)",""],["1230","1,1-디클로로프로펜","1,1-Dichloropropene",""],["1230"," 메틸 알코올"," Methyl alcohol",""],["1263","페인트","Paint","3"],["1268","석유 에테르","Petroleum ether",""],["1274","1-프로판올","1-Propanol",""],["1294","톨루엔","Toluene",""],["1307","P-크실렌","p-Xylene",""],["1307","M-자일렌","m-Xylene",""],["1307","오르소 자일렌","o-Xylene",""],["1307","자일렌","Xylene",""],["1744","브롬","Bromine",""],["1748","차아염소산칼슘","Calcium hypochlorite",""],["1789","염산수용액(액체)","Hydrochloric acid",""],["1791","차아염소산나트륨","Sodium hypochlorite",""],["1814","수산화칼륨 용액","Potassium hydroxide solution","8"],["1824","수산화나트륨 용액","Sodium hydroxide solution","8"],["1830","황산","Sulfuric acid",""],["1863","항공 터빈 연료","Fuel, aviation, turbine engine","3"],["1950","에어로졸","Aerosols","2.1"],["1993","디메틸프로피온아미드","N,N-Dimethylpropionamide",""],["1993","에틸티오펜","2-Ethylthiophene",""],["1993","4,5-디메틸티아졸","4,5-Dimethylthiazole",""],["1993","디메틸-5-헵텐-1알,테크","2,6-Dimethyl-5-heptenal",""],["1993","디메틸설피트","Dimethyl Sulfite",""],["1993","메톡시아크릴산메틸에스테르","Methyl 3-methoxyacrylate",""],["1993","2-이소프로폭시에탄올","(Iodomethyl)trimethylsilane",""],["1993","하이드록시피클리딘","1-(2-Hydroxyethyl)pyrrolidine",""],["1993","요오드화부틸","1-Iodobutane",""],["1993","사이클로헥산올","Cyclohexanol",""],["1993","디메틸아미노프로피온니트릴","3-(Dimethylamino)propionitrile",""],["1993","3,5-디플루오로아니솔","3,5-Difluoroanisole",""],["1993","3,4-디플루오르벤즈알데히드","3,4-Difluorobenzaldehyde",""],["1993","디에칠페닐포스핀","Diethylphenylphosphine",""],["1993","옥텐(시스-4)","cis-4-Octene",""],["1993","시클로데칸","Cyclodecane",""],["1993","클로로(4-)스티렌","4-Chlorostyrene",""],["1993","디메틸아미노아세트알데히드디메틸아세탈","(Dimethylamino)acetaldehyde Dimethyl Acetal",""],["1993","디플르오르아닐린(2,5-)","2,5-Difluoroaniline",""],["1993","1,4-디클로로부탄","1,4-Dichlorobutane",""],["1993","2-헥센알디에틸아세탈","2-hexenal diethyl acetal",""],["1993","시클로펜텐-1-일모르폴린","1-Morpholinocyclopentene",""],["1993","클로로아세탈","Chloroacetaldehyde diethyl acetal",""],["1993","클로로(3-)시티렌","3-Chlorostyrene",""],["1993","클로르이소시아네이트(2)","2-Chloroethyl isocyanate",""],["1993","3-브로모티오펜","3-bromothiophene",""],["1993","4-브로모벤조트리플루오르화물","4-Bromobenzotrifluoride",""],["1993","3-브로모피리딘","3-Bromopyridine",""],["1993","4-브로모플로로벤젠","1-Bromo-4-fluorobenzene",""],["1993","n-헵틸브로마이드","1-Bromoheptane",""],["1993","노나디에날","trans,trans-2,4-Nonadienal",""],["1993","브로모아세트알데히드디에틸아세탈","Bromoacetaldehyde diethyl acetal",""],["1993","2,5디메칠테트라하이드로퓨란","2,5-Dimethyltetrahydrofuran",""],["1993","사이클로펜틸브로마이드","Cyclopentyl bromide",""],["1993","디메틸트랜스4,4)-2-펜텐","Dimethyl(trans-4,4-)-2-pentene",""],["1993","메틸티아졸(4-)","4-Methylthiazole",""],["1993","헥사메틸디실란","Hexamethyldisilane",""],["1993","1-메틸피롤","1-Methylpyrrole",""],["1993","알릴아닐린","N-Allylaniline",""],["1993","D-프롤리놀","(R)-()-2-Pyrrolidinemethanol",""],["1993","디에톡시메틸비닐실란","Diethoxy(methyl)vinylsilane",""],["1993","디에톡시디메틸실란","Diethyldiethoxysilane",""],["1993","3-헵타플루오로부티릴-(+)-캠포르","3-(Perfluorobutyryl)-(+)-camphor",""],["1993","페닐-2-부탄논","1-Phenyl-2-butanone",""],["1993","이소부틸산2-에톡시에틸에스테르","Isobutyric acid 2-ethoxyethyl ester",""],["1993","시클로펜탄카르복실산","Cyclopentanecarboxylic acid",""],["1993","옥텐(시스-3-)-1-올","cis-3-Octen-1-ol",""],["1993","2-메톡시퓨랸","2-Methoxyfuran",""],["1993","메틸(5-)-2-퍼퓨랄","5-Methyl-2-furaldehyde",""],["1993","디플로르아세트페논(3',4'-)","3′,4′-Difluoroacetophenone",""],["1993","포름산페닐에틸에스테르","Phenethyl formate",""],["1993","메틸(3-)부틸벤젠","Isopentylbenzene",""],["1993","메틸피리다진","3-Methylpyridazine",""],["1993","메틸4-메톡시아세톡시아세테이트","Methyl 4-methoxyacetoacetate",""],["1993","메톡시아세토닐트릴","Methoxyacetonitrile",""],["1993","2-옥텐","2-Octene",""],["1993","2-메틸아니솔","2-Methylanisole",""],["1993","메틸(4-)-1,3-디옥산","4-Methyl-1,3-dioxane",""],["1993","브로모시클로부탄","Bromocyclobutane",""],["1993","디메틸아미노아세트알데히드에틸아세탈","(Dimethylamino)acetaldehyde diethyl acetal",""],["1993","1,3,5-트리메틸헥사하이드로1-3-5-트리아진","1,3,5-Trimethylhexahydro-1,3,5-triazine",""],["1993","메틸(3-),-2-퓨라논","3-Methyl-2(5H)-furanone",""],["1993","메타크릴산노르말헥실에스테르","Hexyl methacrylate, 2-Methyl-2-propenoic acid hexyl ester",""],["1993","르블르닉산노르말부틸에스테르","Butyl levulinate",""],["1993","4-(트리플루오로메틸)벤즈알데히드","4-(Trifluoromethyl)benzaldehyde",""],["1993","옥텐(트란스-2-)-1-올","trans-2-Octen-1-ol",""],["1993","3-클로로벤즈알데히드","3-Chlorobenzaldehyde",""],["1993","1,3-디클로로-4-플로오르벤젠","1,3-DICHLORO-4-FLUOROBENZENE",""],["1993","디클로로티오펜","2,5-Dichlorothiophene",""],["1993","헥사메틸시클로트리실라잔","2,2,4,4,6,6-Hexamethylcyclotrisilazane",""],["1993","디메틸피페리딘(3,5-)","3,5-Dimethylpiperidine",""],["1993","클로로(2-)-4-플로로톨루엔","2-Chloro-4-fluorotoluene",""],["1993","디플르오르아닐린(2,6-)","2,6-Difluoroaniline",""],["1993","디플르오르아니솔(2,4-)","2,4-Difluoroanisole",""],["1993","옥텐(시스-2)","cis-2-Octene",""],["1993","노나논(2-)","2-Nonanone",""],["1993","프롤(5-)-2니트로벤조티아졸","5-Fluoro-2-methylbenzothiazole",""],["1993","폴로르벤질(2-)알코올","2-Fluorobenzyl alcohol",""],["1993","아세토아세트산노르말부틸에스테르","acetoacetic acid n-butyl ester",""],["1993","벤질이소프로필아민","N-Isopropylbenzylamine",""],["1993","메틸(3-)티오펜-2-알데히드","3-Methyl-2-thiophenecarboxaldehyde",""],["1993","메틸렌(알파)-브이-부틸로락톤","α-Methylene-γ-butyrolactone",""],["1993","메틸(에이-)시남알데히드","α-Methyl-trans-cinnamaldehyde",""],["1993","메틸(3-)아세토페논","3′-Methylacetophenone",""],["1993","4-메틸벤즈알데히드","p-Tolualdehyde",""],["1993","메틸(4-)-5-비닐티아졸","4-Methyl-5-vinylthiazole",""],["1993","메틸-6-에틸아닐린","2-Ethyl-6-methylaniline",""],["1993","메틸-2-피롤카복시알데히드","1-Methylpyrrole-2-carboxaldehyde",""],["1993","메틸(2-)-1-옥텐","2-Methyloct-1-ene",""],["1993","메틸-브이-부틸로락톤","2-(Methylamino)pyridine",""],["1993","메틸 데카노산","Methyl decanoate",""],["1993","노나논(3-)","3-Nonanone",""],["1993","메틸(2-)아세토페논","2′-Methylacetophenone",""],["1993","메타크릴레이트 사이클로헥실","Cyclohexyl methacrylate",""],["1993","메타크릴산 테트라하이드로푸르푸릴","Tetrahydrofurfuryl methacrylate",""],["1993","트리메타크릴산 트리메틸올프로판","Trimethylolpropane trimethacrylate",""],["1993","트리메틸사이클로헥사놀-3,3,5","3,3,5-Trimethylcyclohexanol",""],["1993","3,5,5-트리메틸-1-헥산올","3,5,5-Trimethyl-1-hexanol",""],["1993","트리메틸인돌레닌-2,3,3","2,3,3-Trimethylindolenine",""],["1993","2-브로모플로로벤젠","1-Bromo-2-fluorobenzene",""],["1993","트리플로르메틸-2벤질알콜","2-(Trifluoromethyl)benzyl alcohol",""],["1993","5-노난올","5-Nonanol",""],["1993","트리플로르메틸-3벤질알콜","3-(Trifluoromethyl)benzyl alcohol",""],["1993","트리플로르메틸-3페닐아세톤","3-(Trifluoromethyl)phenylacetone",""],["1993","헥사플로로벤젠","Hexafluorobenzene",""],["1993","브로모시클로프로판","Bromocyclopropane",""],["1993","클로로-3-메틸-2-부텐","1-Chloro-3-methyl-2-butene",""],["1993","옥타놀-2","(-2-Octanol",""],["1993","펜타플로로니트로벤젠","Pentafluoronitrobenzene",""],["1993","부탄디올(1,2)","1,2-Butanediol",""],["1993","브로모펜타플로로벤젠","Bromopentafluorobenzene",""],["1993","옥탄니트릴(노르말)","Octanenitrile",""],["1993","나노플로르-1-헥센","1H,1H,2H-Perfluoro-1-hexene",""],["1993","메틸피라졸","3-Methylpyrazole",""],["1993","메틸말론산디에틸에스테르","Diethyl methylmalonate",""],["1993","페녹시아세톤","Phenoxy-2-propanone",""],["1993","노르말도데칸","N-DODECANE",""],["1993","에폭시벤즈알데히드(2-)","2-Ethoxybenzaldehyde",""],["1993","디메틸벤즈알데히드(2,4-)","2,4-Dimethylbenzaldehyde",""],["1993","디메틸설폭사이드-디6","Dimethyl sulfoxide-d6",""],["1993","디메톡시디하이드로퓨란","2,5-Dimethoxy-2,5-dihydrofuran",""],["1993","이소발레릴산시클로헥실에스테르","Cyclohexyl isovalerate",""],["1993","케토(3-)-노르말발레리산메틸에스테르","Methyl 3-oxovalerate",""],["1993","이소프로페닐-2-톨루엔","1-Phenylhexane",""],["1993","이소프로필(2-)아닐린","2-Isopropylaniline",""],["1993","에틸말론산디에칠에스테르","Diethyl ethylmalonate",""],["1993","디초산에틸렌글리콜","Ethylene glycol diacetate",""],["1993","4-에틸벤즈알데히드","4-Ethylbenzaldehyde",""],["1993","에틸아닐린(4-)","4-Ethylaniline",""],["1993","에틸(1-)-2-피롤요돈","1-Ethyl-2-pyrrolidone",""],["1993","디클로로부탄","1,2-Dichlorobutane",""],["1993","에틸(2-)헥사논산","2-Ethyl-3-methoxypyrazine",""],["1993","1-브로모-3,5-디플로로벤젠","1-Bromo-3,5-difluorobenzene",""],["1993","디에톡시프로피온산에틸에스테르","Ethyl 3,3-diethoxypropionate",""],["1993","도데센(1,2-)옥사이드","1,2-Epoxydodecane",""],["1993","디비닐데트라메틸디실록산(1,3)","1,3-Divinyltetramethyldisiloxane",""],["1993","부틸페놀","Butyl phenyl ether",""],["1993","ℓ-카르본","L-Carvone",""],["1993","카르요필렌(알파)","α-Humulene",""],["1993","부틸벤질아민","N-Benzyl-tert-butylamine",""],["1993","브로모메틸시클로핵산","(Bromomethyl)cyclohexane",""],["1993","3-브로모-오르토-크실렌","1-Bromo-2,3-dimethylbenzene",""],["1993","4-브로모-메타-크실렌","1-Bromo-2,4-dimethylbenzene",""],["1993","5-브로모-메타-크실렌","1-Bromo-3,5-dimethylbenzene",""],["1993","이소프로필페닐케톤","Isobutyrophenone",""],["1993","이소프로필(4-)아닐린","4-Isopropylaniline",""],["1993","요오드티펜(3-)","3-Iodothiophene",""],["1993","이소프로필아닐린","N-Isopropylaniline",""],["1993","m-아이오도툴루엔","3-Iodotoluene",""],["1993","이소부틸-3-메독시피라진","2-Isobutyl-3-methoxypyrazine",""],["1993","요오드티펜(2-)","2-Iodothiophene",""],["1993","이소보닐아세테이트","Isobornyl acetate",""],["1993","하이드록시-1-메틸디페리딘","3-Hydroxy-1-methylpiperidine",""],["1993","4-하이드록시-2-부타논","4-Hydroxy-2-butanone",""],["1993","헥실(노르말)에테르","Dihexyl ether",""],["1993","3-헥신-1-올","3-Hexyn-1-ol",""],["1993","하이드록시벤조트리플로라이드","3-Hydroxybenzotrifluoride",""],["1993","헥실벤젠(노르말)","Hexylbenzene",""],["1993","포름산디에틸에스테르","Diethyl fumarate",""],["1993","플로로벤질알콜","4-Fluorobenzyl alcohol",""],["1993","이소프로필-4-메틸시클로헥산","Isopropyl(trans-)-4-methlcyclohexane",""],["1993","포름산벤질에스테르","Benzyl formate",""],["1993","이소뷰틸술파이드","Isobuthyl sulfide",""],["1993","프로로요오드벤젠","2-Fluoroiodobenzene",""],["1993","플루오르아세트페논","4'-Fluoroacetophenone",""],["1993","2-에틸피리딘","2-Ethylpyridine",""],["1993","데카논(2-)","2-Decanone",""],["1993","1-에톡시-2-프로판올","1-Ethoxy-2-propanol",""],["1993","플루오르아세트페논","3′-Fluoroacetophenone",""],["1993","4,4-디메톡시 부티로니트릴","3-Cyanopropionaldehyde dimethyl acetal",""],["1993","클로로디메틸페니실란","(Chloromethyl)dimethylphenylsilane",""],["1993","옥텐(시스-5-)-1-올","cis-5-Octen-1-ol",""],["1993","무수이소부틸산","Isobutyric anhydride",""],["1993","메틸에톤케톤옥심","2-Butanone oixme",""],["1993","헥신(2-)-1-올","2-Hexyn-1-ol",""],["1993","펜틸퓨란","2-Pentylfuran",""],["1993","펜틸트리에톡시실란","Pentyltriethoxysilane",""],["1993","오불화피리딘","Pentafluoropyridine",""],["1993","펜타플로로아니솔","2,3,4,5,6-Pentafluoroanisole",""],["1993","보닐아세테이트","()-Bornyl acetate",""],["1993","펜타플로로벤조니트릴","Pentafluorobenzonitrile",""],["1993","펜타플로로스티렌","2,3,4,5,6-Pentafluorostyrene",""],["1993","3,5-비스(트리플로오르메틸)아닐린","3,5-Bis(trifluoromethyl)aniline",""],["1993","바이시클로헥실","Bicyclohexyl",""],["1993","안식향산메틸","Methyl benzoate",""],["1993","엔-트리메틸실릴모르폴린","4-(Trimethylsilyl)morpholine",""],["1993","벤조산비닐에스테르","Vinyl benzoate",""],["1993","1,4-벤조디옥산","Benzo-1,4-dioxane",""],["1993","벤즈알데히드디메틸아세탈","Benzaldehyde dimethyl acetal",""],["1993","벤조산에틸에스테르","Ethyl benzoate",""],["1993","2-아세틸피리딘","2-Acetylpyridine",""],["1993","4-메틸아니솔","4-Methylanisole",""],["1993","4-알릴아니솔","4-Allylanisole",""],["1993","아세트산페닐에스테르","Phenyl acetate",""],["1993","3-메톡시부틸 아세테이트","3-Methoxybutyl acetate",""],["1993","아세트산파라토릴에스테르","p-Tolyl acetate",""],["1993","트리메틸페닐실란","Trimethyl(phenyl)silane",""],["1993","3,3,5-트리메틸사이클로헥사논","3,3,5-Trimethylcyclohexanone",""],["1993","트리메틸아세토니트릴","Trimethylacetonitrile",""],["1993","트리이소프로필실란","Triisopropylsilane",""],["1993","에틸트리에톡시실란","Triethoxy(ethyl)silane",""],["1993","2,3,5-트리메틸피라진","2,3,5-trimethylpyrazine",""],["1993","퍼플로로데카린","Perfluorodecalin",""],["1993","퍼플로로톨루엔","Octafluorotoluene",""],["1993","페네톨","Phenetole",""],["1993","클로로메틸-2,2-디메틸프로피오네이트","Chloromethyl pivalate",""],["1993","펜틴(4-)-1-올","4-Pentyn-1-ol",""],["1993","디메톡시벤젠","1,3-Dimethoxybenzene",""],["1993","디이소프로페닐벤젠","1,3-Diisopropenylbenzene",""],["1993","디플로로벤질(2,4-)알코올","2,4-Difluorobenzyl alcohol",""],["1993","디이소부틸카르비놀","2,6-Dimethyl-4-heptanol",""],["1993","디플로로벤질알코올(2,6-)","2,6-Difluorobenzyl alcohol",""],["1993","디에틸렌글리콜디에틸에테르","Diethylene glycol diethyl ether",""],["1993","디플로로니트로벤젠(2,5-)","2,5-Difluoronitrobenzene",""],["1993","디플로로니트로벤젠(3,4-)","3,4-Difluoronitrobenzene",""],["1993","사이클로헥사논 디메틸 아세탈","Cyclohexanone dimethyl ketal",""],["1993","부틸포름알데히드(엔-터셔리)","N-tert-Butylformamide",""],["1993","2-메톡시-1,3-디옥살란","2-Methoxy-1,3-dioxolane",""],["1993","디에톡시아세트에틸에스테르","Ethyl diethoxyacetate",""],["1993","디클로로아니솔","2,6-Dichloroanisole",""],["1993","디프로모티오펜(2.3-)","2,3-Dibromothiophene",""],["1993","2,4-디클로로톨루엔","2,4-Dichlorotoluene",""],["1993","디삼차부틸벤젠","1,3-Di-tert-butylbenzene",""],["1993","데센(3-)-2-온","3-Decen-2-one",""],["1993","디삼차부틸피리딘","2,6-Di-tert-butylpyridine",""],["1993","디아세토아세트산에일에스테르","Ethyl diacetoacetate",""],["1993","알릴말론산디에틸에스테르","Diethyl allylmalonate",""],["1993","시클로프로필-2-티에닐케톤","Cyclopropyl 2-thienyl ketone",""],["1993","시클로헥실아세트산에틸에스테르","Ethyl cyclohexaneacetate",""],["1993","2-아세틸시클로펜타논","2-Acetylcyclopentanone",""],["1993","3-아세틸디메틸아민","3-Acetyl-2,5-dimethylfuran",""],["1993","아세트산노르말-헵틸에스테르","Heptyl acetate",""],["1993","아세트산노르말-옥틸에스테르","Octyl acetate",""],["1993","메틸렌디옥시벤젠","MethylenedioxybenzeneE",""],["1993","1-브로모펜탄","1-Bromopentane",""],["1993","옥소아밀","1-Iodopentane",""],["1993","니트로(2-)페닐노르말옥틸에테르","2-Nitrophenyl octyl ether",""],["1993","엔-아미노모르폴린","4-Aminomorpholine",""],["1993","메틸트리에톡시실란","Triethoxymethylsilane",""],["1993","메틸인산디메틸에스테르","Dimethyl methylphosphonate",""],["1993","메틸(β-)스티렌","Methylstyrene(β-)",""],["1993","메틸-3-메톡시피라진","Methyl(2-)-3-methoxypyrazine",""],["1993","메틸(2-)-2-옥사졸린","Methyl(2-)-2-Oxazoline",""],["1993","1,3-디클로로프로판","1,3-Dichloropropane",""],["1993","포름알데히드디메틸메르캅탈","Bis(methylthio)methane",""],["1993","헥센(시스-4)-1-올","cis-4-Hexen-1-ol",""],["1993","플로로페놀","2-Fluorophenol",""],["1993","플로로벤질시아나드","2-Fluorophenylacetonitrile",""],["1993","플루오르아니솔","3-Fluoroanisole",""],["1993","옥타메틸트리실록산","Octamethyltrisiloxane",""],["1993","옥탄티올(터셔리)","Octanethiol(tert-)",""],["1993","옥타메틸시클로테트라실록산","octamethylcyclotetrasiloxane",""],["1993","데카논(3-)","3-Decanone",""],["1993","플로로오르소크실렌","O-xylene",""],["1993","프로로(4-)-3니트로벤조트리풀로라이드","4-Fluoro-3-nitrobenzotrifluoride",""],["1993","에틸피리딘-3","3-Ethylpyridine",""],["1993","에틸리덴노르보넨","5-Ethylidene-2-norbornene",""],["1993","에틸(2-)-2-옥사졸린","2-Ethyl-2-oxazoline",""],["1993","에틸-2(에틸(3-)-24-펜탄티온","3-Ethyl-2,4-pentanedione",""],["1993","에틸렌글리콜 모노알릴 에테르","Ethylene glycol monoallyl ether",""],["1993","에틸피페라진(노르말)","1-Ethylpiperazine",""],["1993","에틸-4-메틸티아졸","2-Ethyl-4-methylthiazole",""],["1993","에틸(2-)-3-메틸피라지온","2-Ethyl-3-methylpyrazine",""],["1993","에틸렌 글리콜 모노 t-부틸 에테르","Ehtylene glycol mono-tert-butyl ether",""],["1993","메틸(6-)-2,4-헵탄디온","6-Methyl-2,4-heptanedione",""],["1993","메틸이소옥사졸","5-Methylisoxazole",""],["1993","3-메틸아니솔","3-Methylanisole",""],["1993","디메틸포름아미드디네오펜틸아세탈","N,N-Dimethylformamide dineopentyl acetal",""],["1993","디메틸글리신에틸에스테르","N,N-Dimethylglycine ethyl ester",""],["1993","디메틸아다맨탄","1,3-Dimethyladamantane",""],["1993","디에틸설페이트","Diethyl sulfite",""],["1993","디에틸하이드록실아민","N,N-Diethylhydroxylamine",""],["1993","디플로로피리딘(2,6-)","Difluoropyrodine(2,6-)",""],["1993","디메틸아미노피리딘","2-(Dimethylamino)pyridine",""],["1993","디메틸이소옥사졸","3,5-Dimethylisoxazole",""],["1993","부틸(1-3차)메틸벤젠(4-)","4-tert-Butyltoluene",""],["1993","디클로로아세탈","Dichloroacetaldehyde diethyl acetal",""],["1993","부틸산나프틸에스테르","1-Naphthyl butyrate",""],["1993","디브로모벤젠(1,3-)","1,3-Dibromobenzene",""],["1993","디클로로(1,3-)-2-부텐","1,3-Dichloro-2-butene",""],["1993","디클로로(3,4-)-1-부텐","3,4-Dichloro-1-butene",""],["1993","데칼메틸시클로펜타실록산","Decamethyl-cyclopentasiloxane",""],["1993","데카메틸테트라실록산","Decamethyltetrasiloxsan",""],["1993","플루오르아니솔","2-Fluoroanisole",""],["1993","1-브로모-2,4-디플로로벤젠","1-Bromo-2,4-difluorobenzene",""],["1993","3-브로모벤조트리플루오르화물","3-Bromobenzotrifluoride",""],["1993","벤질트리메틸실란","Benzyltrimethylsilane",""],["1993","2,3-벤조퓨란","2,3-Benzofuran",""],["1993","1-아미노호모피페리딘","1-Aminohomopiperidine",""],["1993","4-아미노-1,2-디에틸피라졸리딘","4-Amino-1,2-diethylpyrazolidine",""],["1993","클로로(3-)피리딘","3-Chloropyridine",""],["1993","시스-2,6-디메틸모르폴린","cis-2,6-Dimethylmorpholine",""],["1993","에폭시옥탄(1,2-)","1,2-Epoxyoctane",""],["1993","에난틴산메틸에스테르","Methyl enanthate",""],["1993","2,4-디메틸티아졸","2,4-Dimethylthiazole",""],["1993","2,5-디메틸티오펜","2,5-Dimethylthiophene",""],["1993","2,5-디메틸피라진","2,5-DIMETHYLPYRAZINE",""],["1993","디메틸헥실아민(1,5)","2-Amino-6-methylheptane",""],["1993","2,2-디메틸티아조리딘","2,2-Dimethylthiazolidine",""],["1993","디메틸페닐실란","Dimethylphenylsilane",""],["1993","디메틸포름아미드디에틸아세탈","N,N-Dimethylformamide diethyl acetal",""],["1993","디메톡시디메틸실란","Dimethoxydimethylsilane",""],["1993","2,3-디메틸피라진","2,3-Dimethylpyrazine",""],["1993","3,5-디메틸옥탄","3,5-dimethyloctane",""],["1993","클로로(4-)부탄산에틸에스테르","Ethyl 4-chlorobutyrate",""],["1993","부틸로락톤","β-Butyrolactone",""],["1993","클로로헵탄","1-Chloroheptane",""],["1993","카프로니트릴","Capronitrile",""],["1993","1-브로모-3,4,5-트리플로로벤젠","5-Bromo-1,2,3-trifluorobenzene",""],["1993","1-브로모-2,3,5,6-테트라플로로벤젠","1-Bromo-2,3,5,6-tetrafluorobenzene",""],["1993","1-브로모-2,4,5-트리플로로벤젠","1-Bromo-2,4,5-trifluorobenzene",""],["1993","3-브로모톨루엔","3-Bromotoluene",""],["1993","α-브로모부틸산에틸","ETHYL 2-BROMOBUTYRATE",""],["1993","1-브로모헥산","1-Bromohexane",""],["1993","5-브로모-1-펜텐","5-Bromo-1-pentene",""],["1993","2-브로모페놀","2-Bromophenol",""],["1993","3-브로모헥산","3-Bromohexane",""],["1993","1-브로모-4-메틸펜탄","1-Bromo-4-methylpentane",""],["1993","2-브로모-5-플로로톨루엔","2-Bromo-5-fluorotoluene",""],["1993","1-브로모-2-에틸헥산","1-Bromo-2-ethylhexane",""],["1993","1-브로모-4-에틸벤젠","1-Bromo-4-ethylbenzene",""],["1993","2-브로모-2-부텐","2-Bromo-2-butene",""],["1993","테트라메틸렌클로로브로마이드","1-Bromo-4-chlorobutane",""],["1993","3-브로모플로로벤젠","1-Bromo-3-fluorobenzene",""],["1993","1-브로모-3,4-디플로로벤젠","1-Bromo-3,4-difluorobenzene",""],["1993","3-브로모시클로핵센","3-Bromocyclohexene",""],["1993","1-브로모-2,5-디플로로벤젠","2-Bromo-1,4-difluorobenzene",""],["1993","2-브로모벤조트리플루오르화물","2-Bromobenzotrifluoride",""],["1993","1-브로모-2,6-디플로로벤젠","1-Bromo-2,6-difluorobenzene",""],["1993","보릭산트리노르말프로필에스테르","Tripropyl borate",""],["1993","1,4-비스(트리플루오로메틸)벤젠","1,4-Bis(trifluoromethyl)benzene",""],["1993","비스(트리메틸실릴)술파이드","Hexamethyldisilathiane",""],["1993","2-브로모-1-프로펜","2-Bromopropene",""],["1993","1-브로모-1-프로펜","1-Bromo-1-propene",""],["1993","알릴메틸설파이드","Allyl methyl sulfide",""],["1993","클로로(2-)파라크실렌","2-Chloro-p-xylene ",""],["1993","클로로(3-)프로피온산메틸에스테르","Ethyl 3-chloropropionate",""],["1993","클로로헥산","1-Chlorohexane",""],["1993","클로로메틸-1,3-디옥소란","2-Chloromethyl-1,3-dioxolane",""],["1993","1-클로로옥탄","1-Chlorooctane",""],["1993","클로로(2-)스티렌","2-Chlorostyrene",""],["1993","클로로(2-)플로로벤젠","1-Chloro-2-fluorobenzene",""],["1993","클로로(3-)플로로벤젠","1-Chloro-3-fluorobenzene",""],["1993","클로로(4-)플로로벤젠","1-Chloro-4-fluorobenzene",""],["1993","클로로시클로헥산","Chlorocyclohexane",""],["1993","클로로에틸벤젠","(1-Chloro-ethyl)-benzene",""],["1993","에틸사이클로헥산","Ethylcyclohexane",""],["1993","2.5-디메틸퓨란","Dimethylfuran(2.5)",""],["1993","디플로로툴루엔(2,4-)","2,4-Difluorobenzene",""],["1993","디플로로벤젠(1,4-)","1,4-Difluorobenzene",""],["1993","클로로-2-메틸부탄","2-Chloro-2-methylbutane",""],["1993","클로로(3-)-1-부텐","3-Chloro-1-butene",""],["1993","클로로메틸메틸술파이드","Chloromethyl methyl sulfide",""],["1993","클로로메틸트리메틸실란","Chloromethyltrimethysilane",""],["1993","시스-2,6-디메틸피페리딘","cis-2,6-Dimethylpiperidine",""],["1993","클로로디메틸프로판"," Neopentyl chloride ",""],["1993","사이클로펜틸 클로라이드","Chlorocyclopentane",""],["1993","메틸(3-)-1-시클로헥센","Methyl(3-)-1-cyclohexene",""],["1993","메틸(2-)-2-부탄디올","Methyl(2-)-2-butanethiol",""],["1993","2-메틸-1,3-디옥솔란","2-Methyl-1,3-dioxolane",""],["1993","메틸(1-)-2-피페리딘메탄올","1-Methyl-2-piperidinemethanol",""],["1993","알릴옥시트리메틸실란","Allyl oxytrimethylsilane",""],["1993","알릴트리메틸실란","Allyltrimethylsilane",""],["1993","헥사메틸디실록산","Hexamethyldisiloxane",""],["1993","플루오르벤조트리폴로라이드","4-Fluorobenzotrifluoride",""],["1993","플로로피리딘","3-Fluoropyridine",""],["1993","에틸퓨란","2-Ethylfuran",""],["1993","에틸(1)피페르딘프로피오네이트","Ethyl 1-piperidinepropionate",""],["1993","디알릴디메틸실란","Diallyldimethylsilane",""],["1993","에틸 메틸 설파이드","Ethyl methyl sulfide",""],["1993","2,2디클로로프로판","2,2-Dichloropropane",""],["1993","아세트초산에틸","Ethyl acetoacetate",""],["1993","아세트산푸르푸릴에스테르","Furfuryl acetate",""],["1993","디메틸아세트아미드디메틸아세탈","Dimethylacetamide(N,N-) dimethylacetal",""],["1993","디플로로톨루엔(2,6-)","2,6-Difluorotoluene",""],["1993","2,2-디메틸-1,3-디옥살란","2,2-Dimethyl-1,3-dioxolane",""],["1993","디하이드로-2-메톡시피란","2-Methoxy-3,4-dihydro-2h-pyran",""],["1993","디하이드로퓨란(2,3-)","2,3-Dihydrofuran",""],["1993","디메칠l(2,3)-1-부탄","Dimethyl(2,3)-2-butane",""],["1993","메틸(2-)티오펜","2-Methylthiophene",""],["1993","메틸(3-)티오펜","3-Methylthiophene",""],["1993","메틸-1-시클로핵산","Methyl-1-cyclohexene",""],["1993","메틸(4-)-1-펜틴","4-Methyl-1-pentyne",""],["1993","옥텐(시스-3)","Octene(cis-3-)",""],["1993","이소티오시안산이소프로필에스테르","Isopropyl isothiocyanate",""],["1993","이소옥사졸","Isoxazole",""],["1993","이소프로필술파이드","Isopropyl sulfide",""],["1993","엔,엔-디메틸포름알데히드","N,N-Diethylformamide",""],["1993","트리에톡시페닐실란","Phenyltriethoxysilane",""],["1993","1-아미노-4-미틸피페라진","1-Amino-4-methylpiperazine",""],["1993","α-안겔리카락톤","α-Angelica lactone",""],["1993","알릴페닐에테르","Allyl phenyl ether",""],["1993","알릴트리에톡시실란","Allyltriethoxysilane",""],["1993","알릴술파이드","Allylsulfide",""],["1993","아미노아세트알데하이드디에틸아세탈","Aminoacetaldehyde diethyl acetal",""],["1993","아미노아세트알데하이드디메틸아세탈","Aminoacetaldehyde dimethyl acetal",""],["1993","2,2-디메폭시프로판","2,2-Dimethoxypropane",""],["1993","1-트리메틸실릴-1-프로핀","1-(TRIMETHYLSILYL)-1-PROPYNE",""],["1993","트리메틸렌옥사이드","Trimethylene oxide",""],["1993","트리메틸렌설파이드","Trimethylene sulfide",""],["1993","트리메틸에톡시실란","Ethoxytrimethylsilane",""],["1993","디메틸헵탄2,3","2,3-Dimethylheptane",""],["1993","트리플르오르메톡시벤젠","(Trifluoromethoxy)benzene",""],["1993","2,4,4-트리메칠-2-옥사졸린","2,4,4-Trimethyl-2-oxazoline",""],["1993","트리메칠실란트리플르오르메칠","Trimethyl(trifluoromethyl)silane",""],["1993","메틸트리메톡시실란","Trimethoxymethylsilane",""],["1993","2-피페콜린","2-Methylpiperidine",""],["1993","3-피페콜린","3-methylpierdine",""],["1993","4-피페콜린","4-methylpierdine",""],["1993","펜타플로로벤젠","Pentafluorobenzene",""],["1993","프로피온알데히드디메틸아세탈","Proplonaldehyde dimethylacetal",""],["1993","삼차-아밀브로마이드","tert-Amyl bromide",""],["1993","시클로펜타디에닐화나트륨","Sodium cyclopentadienylide",""],["1993","시클로헥산메탄올","Cyclohexanemethanol",""],["1993","디클로로톨루엔","2,5-Dichlorotoluene",""],["1993","디에틸말론산디메틸에스테르","Dimethyl diethylmalonate",""],["1993","3,3-디메톡시프로피오니트릴","3,3-Dimethoxypropionitrile",""],["1993","디메틸설폭사이드","Dimethyl sulfoxide",""],["1993","하이드록시에틸-1-메틸피롤리딘","1-Methyl-2-pyrrolidine ethanol",""],["1993","인돌린","Indoline",""],["1993","아이오도벤젠","Iodobenzene",""],["1993","2-에틸-1-핵산올","2-Ethyl-1-hexanol",""],["1993","글리세롤포르말","Glycerol formal",""],["1993","요오드톨루엔","2-Iodotoluene",""],["1993","아세트초산메틸","Methyl acetoacetate",""],["1993","메틸옥사아세트산디에틸에스테르","Diethyl oxalpropionate",""],["1993","메틸벤조옥사졸","2-Methylbenzoxazole",""],["1993","트리이소프로필실릴)아세틸렌","(Triisopropylsilyl)acetylene",""],["1993","트리메틸(페닐티오)메틸","Trimethyl(phenylthiomethyl)silane",""],["1993","피페리딘에탄올","1-(2-Hydroxyethyl)piperidine",""],["1993","2-(트리메틸실릴)티아졸","2-(Trimethylsilyl)thiazole",""],["1993","브로모스틸렌","β-Bromostyrene",""],["1993","o-브로모톨루엔","2-Bromotoluene",""],["1993","부탄디올((알,알r)-(1)-2,3-)","D-()-2,3-Butanediol",""],["1993","β-브로모에틸벤젠","(2-Bromoethyl)benzene",""],["1993","3-브로모프로피온산메틸에스테르","Methyl 3-bromopropionate",""],["1993","노넨(시스-3-)-1-올","cis-3-Nonen-1-ol",""],["1993","노넨(시스-6-)-1-올","cis-6-Nonen-1-ol",""],["1993","메틸피라진","2-Methylpyrazine",""],["1993","네오맨톨","(+)-Neomenthol",""],["1993","페닐트리케톡시실란","Trimethoxyphenylsilane",""],["1993","(S)-(+)-3-하이드록시 사하이드로 퓨란","(S)-(+)-3-Hydroxytetrahydrofuran",""],["1993","테트라하이드로퀴녹살린","5,6,7,8-Tetrahydroquinoxaline",""],["1993","클로르프로필-3트리메톡시실란","(3-Chloropropyl)trimethoxysilane",""],["1993","메틸티아졸린(2-)","2-Methyl-2-thiazoline",""],["1993","터트-부틸브로모아세드산","tert-Butyl bromoacetate",""],["1993","디에틸말산","Diethyl maleate",""],["1993","하프늄 4-부톡사이드","Hafnium(IV) tert-butoxide",""],["1993","디-3차-부틸실란","Di-tert-butylsilane",""],["1993","플루아지풉-p","Fluazifop-p",""],["1993","트리스(트리메틸실릴)실란","Tris(trimethylsilyl)silane",""],["1993","디플르오르벤젠(1,3-)","1,3-DIFLUOROBENZENE",""],["1993","디플르오르벤젠(1,2-)","1,2-Difluorobenzene",""],["1993","디이소프로폭시비스(에틸아세토아세테이트)티탄","Diisopropoxybis(ethyllacetoacetate)titanium",""],["1993","디-n-부톡시비스(트리에탄올아미나토)티탄","Di-n-butoxybis(triethanolamine)titanium",""],["1993","테트라아세틸아세토네이트 티탄","Tetraacetylacetonate titanium",""],["1993","피루브산메틸","Methyl pyruvate",""],["1993","알루미늄비스에틸아세토아세테이트 모노아세틸아세토네이트","Aluminum bis-(ethylacetoacetate) mono-(acetylacetonate)",""],["1993","테트라-n-부틸 암모늄플루오라이드","Tetra-n-butylammonium fluoride(1mol/l in THF)",""],["1993","2,2,3,3-테트라플루오로프로판올","2,2,3,3-Tetrafluoropropanol",""],["1993","알루미늄-n-부톡시모노에틸 아세트아세테이트","Aluminum di-n-butoxy monoethyl acetoacetate",""],["1993","바나듐(V) 옥시트리이소프로폭사이드","Vanadium(V) oxytriisopropoxide",""],["1993","알루미늄 트리 sec-부톡사이드","Aluminum tri-(sec-butoxide)",""],["1993","1,3-비스(플리프루오로메틸)벤젠","1,3-Bis(trifluoromethyl) benzene",""],["1993","모노sec-부톡시알루미늄디이소프로필레이트","Mono-sec-butoxy aluminum diisopropylate",""],["1993","알루미늄 에틸아세토 아세테이트 디이소프로필레이트","Aluminum ethylacetoacetate diisopropylate",""],["1993","3-메틸-1-부틴-3-올","3-Methyl-1-butyn-3-ol",""],["1993","알루미늄계 커플링제","Aluminate coupling agent",""],["1993","디이소프로폭시비스(아세틸아세토나트)티탄","Diisopropoxybis(acetylacetonato)titanium",""],["1993","이소프로폭시(2-에틸-1,3-헥산디올라이트)티탄","Isopropoxy(2-ethyl-1,3-hexanediolato)titanium",""],["1993","디이소프로폭시비스(트리에탄올아미나토)티탄","Di-iso-propoxybis(triethanolaminato)titanium",""],["1993","α-브로모이소부틸산 tert-부틸 에스테르","tert-Butyl-α-bromoisobutyrate",""],["2014","과산화수소 용액","Hydrogen peroxide, aqueous","5.1"],["2319","메타-1,5-디엔","(R)-(-)-alpha-Phellandrene",""],["2319","카렌(2)","(+)-2-Carene",""],["2810","에틸렌글리콜모노부틸에테르","2-Butoxyethanol",""],["2810","시아노프로피롤디딘","1-Pyrrolidinebutyronitrile",""],["2810","4-클로로아세트초산메틸","Methyl 4-chloroacetoacetate",""],["2810","시안초산메틸","Methyl cyanoacetate",""],["2810","트리메톡시-4페놀","4-(Trifluoromethoxy)phenol",""],["2810","트리플로르메틸-3벤조니트릴","3-(Trifluoromethyl)benzonitrile",""],["2810","트란스-아니솔","trans-Anethole",""],["2810","히드라지노에탄올(2-)","Hydrazinoethanol",""],["2810","3-메틸-3,3'-이미노비스(프로필아민)","3,3′-Diamino-N-methyldipropylamine",""],["2810","메틸벤조티아졸","2-Methylbenzothiazole",""],["2810","메틸(3-)-2-페닐피리딘","3-Methyl-2-phenylpyridine",""],["2810","메틸(1-)-1-페닐히드라진","1-Methyl-1-phenylhydrazine",""],["2810","메톡시-4-에틸페놀","4-Ethylguaiacol",""],["2810","메탄술폰산메틸에스테르","Methyl methanesulfonate",""],["2810","트리라우릴트리피오포스파이트","Trilaury trithiophosphite",""],["2810","노르말메틸포름아미드","N-Methylformamide",""],["2810","트리플르오르-1,2,3,-2니트로벤젠","1,3,5-Trifluoro-2-nitrobenzene",""],["2810","트리플르오르-1,2,3,-4니트로벤젠","2,3,4-Trifluoronitrobenzene",""],["2810","1-옥텐-3-올","1-Octen-3-ol",""],["2810","3-아세틸피리딘","3-Acetylpyridine",""],["2810","옥틸(노르말)시안니드","Nonanenitrile",""],["2810","니트로(4-)큐멘","1-Isopropyl-4-nitrobenzene",""],["2810","메틸메타톨루이딘","N-Methyl-m-toluidine",""],["2810","4-메틸팔레르산","4-Methylvaleric acid",""],["2810","글리시돌","Glycidol",""],["2810","디메틸-메타-톨루이딘","N,N-Dimethyl-m-toluidine",""],["2810","2,5-디메틸티오페놀","2,5-Dimethylbenzenethiol",""],["2810","1,3-디메틸-2-이미다졸리디논","1,3-Dimethyl-2-imidazolidinone",""],["2810","디메틸아크릴아미드","Dimethylacrylamide(N,N-)",""],["2810","이소티오시안산오르소토릴에스테르","o-Tolyl isothiocyanate",""],["2810","에틸렌글리콜모노노르말헥실에테르","Ethylene glycol monohexyl ether",""],["2810","1-에틸-4-니트로벤젠","4-Ethylnitrobenzene",""],["2810","에틸(2-)노르말부틸산","Ethyl(2-)n-butyric acid",""],["2810","에틸아미노에탄올","2-(Ethylamino)ethanol",""],["2810","클로로(2-)-6-메독시피리딘","2-Chloro-6-methoxypyridine",""],["2810","1-브로모-2-클로로에탄","1-Bromo-2-chloroethane",""],["2810","부틸아민(4-노르말)","4-Butylaniline",""],["2810","부틸아민(4-터셔리)","4-tert-Butylaniline",""],["2810","N-n-부톡시메틸 아크릴아미드","N-(Butoxymethyl)acrylamide",""],["2810","2-브로모-파라-크실렌","2-Bromo-1,4-dimethylbenzene",""],["2810","2-브로모-메타-크실렌","2-BROMO-M-XYLENE",""],["2810","1,4-부탄디올","1,4-Butanediol",""],["2810","3-브로모밴즈알데히드","3-Bromobenzaldehyde",""],["2810","2-브로모밴즈알데히드","2-Bromobenzaldehyde",""],["2810","하이드록시프로필모르폴린","N-(2-Hydroxypropyl)morpholine",""],["2810","헥실술파이드","Hexyl sulfide",""],["2810","헥사메틸포스포릭트리아미드","Hexamethylphosphoramide",""],["2810","포밀피페리딘","1-Formylpiperidine",""],["2810","플로로니트로벤젠","1-Fluoro-3-nitrobenzene",""],["2810","플로로페놀","3-Fluorophenol",""],["2810","시아노에틸피레리딘","1-Piperidinepropionitrile",""],["2810","클로로에틸페닐슐파이드","2-Chloroethyl phenyl sulfide",""],["2810","클로로(2-)-4-플로로아닐린","2-Chloro-4-fluoroaniline",""],["2810","요오드에탄올(2-)","2-Iodoethanol",""],["2810","4-브로모-2-플로로톨루엔","4-Bromo-2-fluorotoluene",""],["2810","3,5-비스(트리플로로르메틸)니트로벤젠","3,5-Bis(trifluoromethyl)nitrobenzene",""],["2810","트리글리콜 디클로라이드","1,2-Bis(2-chloroethoxy)ethane",""],["2810","벤프라캅","Benfuracarb",""],["2810","2-벤질피리딘","2-Benzylpyridine",""],["2810","벤질클로로메틸에테르","Benzyl chloromethyl ether",""],["2810","안식향산벤질","Benzyl benzoate",""],["2810","2-아닐리노에탄올","2-Anilinoethanol",""],["2810","4-아미노벤조트리플로라이드","4-(Trifluoromethyl)aniline",""],["2810","페니트로티온","Fenitrothion",""],["2810","펜술포티온","Fensulfothion",""],["2810","디이소프로필아닐린","2,6-Diisopropylaniline",""],["2810","p-브로모아니졸","4-Bromoanisole",""],["2810","디플로로니트로벤젠(2,4-)","2,4-Difluoronitrobenzene",""],["2810","디에틸아닐린","2,6-Diethylaniline",""],["2810","디벤질아민","Dibenzylamine",""],["2810","1,4-디브로모부탄","1,4-Dibromobutane",""],["2810","디클로로(2,3-)-1-프로판올","2,3-Dichloro-1-propanol",""],["2810","다이알릴말레이트모노머","Diallyl maleate",""],["2810","시클로프로필페닐술파이드","Cyclopropyl phenyl sulfide",""],["2810","4-아세틸피리딘","4-Acetylpyridine",""],["2810","벤질 알코올","Benzyl alcohol",""],["2810","디브로모티오펜(2,5-)","2,5-Dibromothiophene",""],["2810","2-브로모-4-플르오르아닐닌","2-Bromo-4-fluoroaniline",""],["2810","클로로피나콜린","1-Chloropinacolone",""],["2810","3-메틸-1,1-디페닐우레아","3-Methyl-1,1-diphenylurea",""],["2810","에틸아닐린(3-)","3-Ethylaniline",""],["2810","N,N-디메틸-P-톨루이딘"," N,N-Dimethyl-p-toluidine ",""],["2810","3-메톡시아크릴로니트릴","3-Methoxyacrylonitrile",""],["2810","네오펜틸글리콜 디아크릴레이트","Neopentyl glycol diacrylate",""],["2810","1-피롤리딘부탄에니트릴","1-Pyrrolidinebutyronitrile",""],["2810","에토프로포스","Ethoprophos",""],["2810","트리 메틸 포스페이트","Trimethyl phosphate",""],["2810","에디펜포스","Edifenphos",""],["2810","포스티아제이트","Fosthiazate",""],["2810","τ-플루바리네이트","τ-Fluvalinate",""],["2810","하르펜프록스","Halfenprox",""],["2810","시페메트린","Cypermethrin",""],["2810","트리글리콜 디메르캅탄","Triglycol dimercaptane",""],["2810","스티렌옥사이드","Styrene oxide",""],["2810","티오안식향산","Thiobenzoic acid",""],["2810","테트라하이드로나트탈린","1,2,3,4-Tetrahydronaphthaline",""],["2810","비스-(2-메르캅토에틸)설파이드","Bis-(2-mercaptoethyl)sulfide",""],["2810","아세트초산알릴","Allyl acetoacetate",""],["2810","디클로로에틸포말","β,β'-Dichloroethyl formal",""],["2810","염화트리메틸벤질암모늄","Trimethylbenzylammonium chloride",""],["2814","감염성 물질, 사람","Infectious substance, affecting humans","6.2"],["2915","방사성 물질, Type A","Radioactive material, Type A","7"],["3077","카드뮴황","Cadmium yellow",""],["3077","캡탄","Captan",""],["3077","2,4-디클로로페녹시에타노익 엑시드","2,4-D",""],["3077","아세나프텐","Acenaphthene",""],["3077","아세트아마이드","Acetamide",""],["3077","켈테인","Kelthane",""],["3077","디티오필","Dithiopyr",""],["3077","페녹사프롭 피-에틸","Fenoxaprop p-ethyl",""],["3077","아비에틱산","Abietic acid",""],["3077","벤플루랄린","Bethrodine",""],["3077","펜타플루오로페닐 설파이드","Pentafluorophenyl sulfide",""],["3077","카르보히드라자이드","Carbohydrazide",""],["3077","4,4′-디아미노디페닐 설파이드","4,4′-Diaminodiphenyl sulfide",""],["3077","테트라페닐 안티몬(V) 브로마이드","Tetraphenylantimony(V) bromide",""],["3077","테트라페닐 안티몬(V) 메톡사이드","Tetraphenylantimony(V) methoxide",""],["3077","페난트렌","Phenanthrene",""],["3077","4,4′-메틸렌-비스(2-클로로아닐린)","4,4′-Methylene-bis(2-chloroaniline)",""],["3077","2-플루오로바이페닐","2-Fluorobiphenyl",""],["3077","납분","Lead powder",""],["3077","아크린아트린","Acrinathrin",""],["3077","1,2,4,5-사염화벤젠","1,2,4,5-Tetrachlorobenzene",""],["3077","사염화-1,4-벤조퀴논","Tetrachloro-1,4-benzoquinone",""],["3077","사염화 프탈릭 무수소화물","Tetrachlorophthalic anhydride",""],["3077","트리페닐 포스파이트","Triphenyl phosphite",""],["3077","옥틸페녹시폴리(에톡시에탄올)","Octylphenoxypoly(ethoxyethanol)",""],["3077","4'-히드록시-2'-메틸아세토헤논","4′-Hydroxy-2′-methylacetophenone",""],["3077","초산 암모늄","Ammonium acetate",""],["3077","라우릴 알코올","Lauryl alcohol",""],["3077","클로티아니딘","Clothianidin",""],["3077","메톡페노지드","Methoxyfenozide",""],["3077","비페나제이트","Bifenazate",""],["3077","인독사카브","Indoxacarb",""],["3077","쿠레톡심메틸","Kresoxim-methyl",""],["3077","트리프록시스토로빈","Trifloxystrobin",""],["3077","아시벤조랄 S메틸제","Acibenzolar-S-methyl",""],["3077","부타페나실","Butafenacil",""],["3077","테부페노지드","Tebufenozide",""],["3077","피리프로시펜","Pyriproxifen",""],["3077","피리다벤","Pyridaben",""],["3077","할로설폰-메틸","Halosulfuron-methyl",""],["3077","루페누론","Lufenuron",""],["3077","플루미옥사진","Flumioxazin",""],["3077","플라자설퍼론","Flazasulfuron",""],["3077","디메트모르프","Dimethomorph",""],["3077","티펜술퍼론-메틸","Thifensulfuron-methyl",""],["3077","프로피자미드","Propyzamide",""],["3077","벤설프론 메틸","Bensulfuron-methyl",""],["3077","펜디메탈린","Pendimethalin",""],["3077","리누론","Linuron",""],["3077","테트라페닐 안티몬(V) 아세테이트","Tetraphenylantimony(V) acetate",""],["3077","테트라메틸티우람디설파이드","Tetramethylthiuramdisulfide",""],["3077","디페닐아민","Diphenylamine",""],["3077","o-톨리딘","o-Tolidine",""],["3077","2-나프톨","2-Naphthol",""],["3077","4-t-부틸페놀","4-tert-Butylphenol",""],["3077","플루오렌","Fluorene",""],["3077","벤조일안식향산메틸","Methyl-2-benzoylbenzoate",""],["3077","벤조인 에틸 에테르","Benzoin ethyl ether",""],["3077","이미다졸","Imidazole",""],["3077","디부틸하이드록시톨루엔","2,6-Di-tert-butyl-4-methylphenol",""],["3077","2,4,6-트리-터셔리-부틸페놀","2,4,6-Tri-tert-butylphenol",""],["3077","염화암모늄","Ammonium chloride",""],["3080","벤질이소시아네이트","Benzyl isocyanate",""],["3082","트리이소프로필벤젠-1,3,5","1,3,5-Triisopropylbenzene",""],["3082","2-에틸헥실아세테이트","2-Ethylhexyl acetate",""],["3082","노르말데실벤젠","1-Phenyldecane",""],["3082","1-브로모-5-클로로펜탄","1-Bromo-5-chloropentane",""],["3082","디에틸포스포노아세트산에틸에스테르","Triethyl phosphonoacetate",""],["3082","디플르오르벤조알데히드(2,6-)","2,6-Difluorobenzaldehyde",""],["3082","메틸나프탈렌","Methylnaphthalene",""],["3082","락토니트릴","lactonitrile",""],["3082","요오드헥산(1-)","1-Iodohexane",""],["3082","메시틸브로마이드","Bromomesitylene",""],["3082","이소샤프롤","Isosafrole",""],["3082","피페로닐부톡사이드","Piperonylbutoxide",""],["3082","메틸(2-)비페닐","2-Phenyltoluene",""],["3082","펠라고닉산메틸에스테르","Methyl nonanoate",""],["3082","나프텐산","Naphthenic acid",""],["3082","N-메틸엔트라닐산메틸","Dimethyl anthranilate",""],["3082","메타크릴산 벤질","Benzyl Methacrylate",""],["3082","메타크릴산 라우릴","Lauryl methacrylate",""],["3082","라우릴산이소아밀에스테르","Isoamyl laurate",""],["3082","라우릴산메틸에스테르","Methyl Laurate",""],["3082","라우릴산에틸에스테르","Ethyl laurate",""],["3082","DOZ","Dioctyl azelate",""],["3082","디옥틸 프탈레이트(DOP)","Dioctyl phthalate",""],["3082","트리메틸-1,3,3,-2-메틸렌인돌린","1,3,3-Trimethyl-2-methyleneindoline",""],["3082","p-t-부틸-α-메틸하이드로신나믹알데히드","2-(4-TERT-BUTYLBENZYL)-PROPIONALDEHYDE",""],["3082","n-노난올","1-Nonanol",""],["3082","도데실벤젠","1-Phenyldodecane",""],["3082","DMP","Dimethyl phthalate",""],["3082","디메틸니트로벤젠","1,2-Dimethyl-3-nitrobenzene",""],["3082","디이소프로필벤젠(1,3-)","1,3-Diisopropylbenzene",""],["3082","디이소프로필벤젠(1,4-)","1,4-Diisopropylbenzene",""],["3082","에틸렌글리콜","Ethylene glycol",""],["3082","클로로도데칸","1-Chlorododecane",""],["3082","1-크로르데칸","1-Chlorodecane",""],["3082","카프릴산비닐에스테르","Vinyl decanoate",""],["3082","카프릴산부틸에스테르","Caprylic acid N-butyl ester",""],["3082","클로로-2-메틸-2-페닐프로판","2-Chloromethyl-2-phenylpropane",""],["3082","부틸메타크실렌","1-tert-Butyl-3,5-dimethylbenzene",""],["3082","브롬화옥틸","1-Bromooctane",""],["3082","2-브로모클로로벤젠","1-Bromo-2-chlorobenzene",""],["3082","2-브로모-1-메톡시벤젠","2-Bromoanisole, 2-브로모아니졸",""],["3082","1-브로모데칸","1-Bromodecane",""],["3082","포름산디노르말부틸에스테르","Di-n-butylfumarate",""],["3082","에틸나프탈렌(2-)","2-Ethylnaphthalene",""],["3082","파네실아세트산","Farnesyl acetate",""],["3082","파네솔","Farnesol",""],["3082","쿠민알데히드","Cuminaldehyde",""],["3082","데카논(4-)","4-Decanone",""],["3082","클로로헥사데칸","1-Chlorohexadecane",""],["3082","클로로노난","1-Chlorononane",""],["3082","1-클로로나프탈렌","1-Chloronaphthalene",""],["3082","아디프산디이소프로필에스테르","Diisopropyl adipate",""],["3082","2-벤질-1,3-디옥솔란","2-Benzyl-1,3-dioxolane, Phenylacetaldehyde ethylene-glycol acetal",""],["3082","벤조산이소부틸에스테르","Isobutyl benzoate",""],["3082","1-아미노운데칸","Undecylamine",""],["3082","안스라니릭산노르말부틸에스테르","Butyl anthranilate",""],["3082","아디프산디노르말부틸에스테르","Dibutyl adipate",""],["3082","트리에틸포스파이트","1-Chlorododecane",""],["3082","3-트리플로르메틸벤즈알데히드","3-(Trifluoromethyl)benzaldehyde",""],["3082","디에틸 프탈레이트","Diethyl phthalate",""],["3082","1,8디클로로옥탄","1,8-Dichlorooctane",""],["3082","디클로로스티렌","2,6-Dichlorostyrene",""],["3082","디브로모벤젠(1,2-)","1,2-Dibromobenzene",""],["3082","디클로로데칸","1,10-Dichlorodecane",""],["3082","벤조산노르말부틸에스테르","Butyl benzoate",""],["3082","부틸벤질프탈레이트","Benzyl butyl phthalate",""],["3082","1,6-디클로로헥산","1,6-Dichlorohexane",""],["3082","1-데칸티올","1-Decanethiol",""],["3082","디벤질에테르","Benzyl ether",""],["3082","데실 알코올","1-Decanol",""],["3082","데실알데히드","Decanal",""],["3082","2-데카놀","2-Decanol",""],["3082","시클로헥실프로판올","3-Cyclohexyl-1-propanol",""],["3082","엔-아밀벤젠","Pentylbenzene",""],["3082","디하이드로나프탈렌","1,2-Dihydronaphthalene",""],["3082","m-디클로로벨젠","1,3-Dichlorobenzene",""],["3082","에틸헥사노일산비닐에스테르","Vinyl 2-ethylhexanoate",""],["3082","1-브로모-4-트리플로로메톡시벤젠","1-Bromo-4-(trifluoromethoxy)benzene",""],["3082","1-브로모-2-에틸벤젠","1-Bromo-2-ethylbenzene",""],["3082","사이클로헥실 아크릴레이트","Cyclohexyl acrylate",""],["3082","아크릴산노르말헥실에스테르","Hexyl acrylate",""],["3082","옥탄알(트란스-2-)","trans-2-Octenal",""],["3082","2,3-디클로로-5-(트리플루오로메틸)피리딘","2,3-Dichloro-5-(trifluoromethyl)pyridine",""],["3082","디부틸 프탈레이트","Dibutyl phthalate",""],["3082","클로로(4-)-2-플로로아닐린","4-Chloro-2-fluoroaniline",""],["3082","클로로(1-)데트라데칸","1-Chlorotetradecane",""],["3082","아크릴산라우릴","Lauryl acrylate, Dodecyl acrylate",""],["3082","트리프로필렌글리콜 디아크릴레이트","Tri(propylene glycol) diacrylate",""],["3082","아크릴산이소옥틸","Isooctyl acrylate",""],["3082","아크릴산이소보닐","Acrylic acid isobornyl ester",""],["3082","에틸-3-디메틸아미노 아크릴레이트","Ethyl-3-dimethylamino acrylate",""],["3082","네롤","Nerol",""],["3082","지방산, 팜오일","Fatty acids, palm-oil -",""],["3082","갈락솔리드","Galaxolide",""],["3082","실라플루오펜","Silafluofen",""],["3082","플루아지풉","Fluazifop",""],["3082","프레틸라클로","Pretilachlor",""],["3082","이소데실알코올","Isodecyl alcohol",""],["3082","섬에스 900","Therm-S 900",""],["3082","직쇄형 알킬벤젠","Linear Alkylbenzene",""],["3082","염소화파라핀","Chlorinated paraffins",""],["3082","비스페놀A-비스(디페닐인산염)","Bisphenol A- bis(diphenyl phosphate)",""],["3082","히드록실아민","Hydroxylamine",""],["3082","1,3-페닐렌비스(디페닐인사염)","1,3,-Phenylene-bis(diphenyl phosphate)",""],["3082","디페닐설파이드","Diphenyl sulfide",""],["3082","페닐사이클로헥산","Phenylcyclohexane",""],["3082","프탈산디알릴모노머","Diallyl phthalate",""],["3082","트리스(2-클로로이소프로필) 인산","Tris(2-chloroisopropyl) phosphate",""],["3082","P-디클로로벤젠","P-Dichlorobenzene",""],["3082","N-에틸 o/p-톨루엔술폰아미드","N-ethyl o/p-toluene sulfonamide",""],["3082","크레오소트유","Creosote oil",""],["3090","비스무스분","Bismuth powder",""],["3091","리튬금속 배터리(장비 포함/포함된)","Lithium metal batteries (in/with equipment)","9"],["3295","인단","Indan",""],["3295","에틸톨루엔-3","3-Ethyltoluene",""],["3295","시클로옥탄","Cyclooctane",""],["3295","3.3-디메틸-1-부텐","3,3-Dimethyl-1-butene",""],["3295","2,2,4-트리메칠헥산","2,2,4-Trimethylhexane",""],["3295","디메틸-3-헵텐","Dimethyl(trans-2,2-)-3-heptene",""],["3295","2,3-디메틸-1,3-부타디엔","2,3-Dimethyl-1,3-butadiene",""],["3295","트리데실벤젠","Tridecylbenzene",""],["3295","펜타디엔(시스-1,3-)","cis-1,3-Pentadiene",""],["3295","시클로옥텐","Cyclooctene",""],["3295","펜타데칸(노르말)","Pentadecane",""],["3295","옥타데센(1-)","1-Octadecene",""],["3295","1,3-디메틸나프탈렌","1,3-Dimethylnaphthalene",""],["3295","도데센(1-)","1-Dodecene",""],["3295","4,4-다이메틸-1-펜텐","4,4-Dimethyl-1-pentene",""],["3295","이소프로필나프탈렌","2-Isopropylnaphthalene",""],["3295","인딘","Indene",""],["3295","헥신","1-Hexyne",""],["3295","시클로도데센","Cyclododecene",""],["3295","메틸시클로펜타디엔다이머","Methylcyclopentadiene dimer",""],["3295","메틸(4-)노난","4-Methylnonane",""],["3295","노나디인(1,8-)","1,8-Nonadiyne",""],["3295","에티일벤젠","Phenylacetylene",""],["3295","에틸톨루엔-2","2-Ethyltoluene",""],["3295","에틸톨루엔-4","4-Ethyltoluene",""],["3295","메틸(2-)-2-헥센","2-Methyl-2-hexene",""],["3295","부틸시클로헥산","Butylcyclohexane",""],["3295","부틸(터셔리)시클로헥산","tert-Butylcyclohexane",""],["3295","데신(1-)","1-Decyne",""],["3295","데센","1-Decene",""],["3295","시스-4-메틸-2-펜텐","cis-4-Methyl-2-pentene",""],["3295","디메틸헥산(2.5)","2,5-Dimethylhexane",""],["3295","2,6-디메틸옥탄","2,6-DIMETHYLOCTANE",""],["3295","3,3-디메틸-1-부틴","3,3-Dimethyl-1-butyne",""],["3295","디메틸-2.4-헥사디엔","2,5-DIMETHYL-2,4-HEXADIENE",""],["3295","2,5-디메틸-1,5-헥사디엔","2,5-Dimethyl-1,5-hexadiene",""],["3295","1,3-시클로헥사디엔","1,3-Cyclohexadiene",""],["3295","메틸(3-)-1-헥센","3-Methyl-1-hexene",""],["3295","메틸(시스-3)-2-펜텐","cis-3-Methyl-2-pentene",""],["3295","메틸(트란스-3)-2-펜텐","trans-3-Methyl-2-pentene",""],["3295","3-메틸-1,3-부타디엔","3-Methyl-1,2-butadiene",""],["3295","메틸(2-)-1-헥텐","2-Methyl-1-heptene",""],["3295","메틸(2-)-1-페닐프로펜","2-Methyl-1-phenyl-1-propene",""],["3295","메틸(2-)-1,5-헥사디엔","2-Methyl-1,5-hexadiene",""],["3295","메틸(1-)-1-시클로헥센","1-Methyl-1-cyclohexene",""],["3295","메틸-1,4-시크로헥사디엔","1-Methyl-1,4-cyclohexadiene",""],["3295","메틸-1-시클로펜텐","1-Methyl-1-cyclopentene",""],["3295","메틸(5-)-1-헥센","5-Methyl-1-hexene",""],["3295","헥신(3-)","3-Hexyne",""],["3295","헥센(2-)","2-Hexene (cis+trans)",""],["3295","헥신(2-)","2-Hexene",""],["3295","2,3-디메틸펜탄","2,3-Dimethylpentane",""],["3295","2,4-디메틸펜탄","2,4-Dimethylpentane",""],["3295","디메칠(2,3)-2-부텐","2,3-Dimethyl-2-butene",""],["3295","디메틸헥산(2.2)","2,2-Dimethylhexane",""],["3295","옥텐(트란스-2)","trans-2-Octene",""],["3295","메틸렌시클로헥센","Methylenecyclohexane",""],["3295","메틸(3-)-2-펜텐","3-Methyl-2-pentene",""],["3295","메틸(4)-1-시클로헥센","4-Methyl-1-cyclohexene",""],["3295","메틸(4-)-1헥센","4-Methyl-1-hexene",""],["3295","헥센(시스-3)","cis-3-Hexene",""],["3295","헥센(트란스-3)","trans-3-Hexene",""],["3295","헥센(시스-2)","cis-2-Hexene",""],["3295","헥센(트란스-2)","trans-2-Hexene",""],["3295","알릴벤젠","Allylbenzene",""],["3295","펜틴(1-)","1-Pentyne",""],["3295","옥텐(트란스-4","trans-4-Octene",""],["3295","2,3,3-트리메칠-1-부탄","2,3,3-Trimethyl-1-butene",""],["3295","2-펜텐","2-Pentene ",""],["3295","펜텐(트란스-2-)","trans-2-Pentene",""],["3295","2-펜틴","2-Pentyne",""],["3295","펜타디엔(트란스-1.3-)","trans-1,3-Pentadiene",""],["3295","데카디엔","1,9-Decadiene",""],["3295","트렌스-4-메틸-2-펜텐","trans-4-Methyl-2-pentene",""],["3295","메틸(7-)-1,6-옥타디엔","7-Methyl-1,6-octadiene",""],["3295","수도큐멘","1,2,4-Trimethylbenzene",""],["3295","1,2,3-트리메틸벤젠","1,2,3-Trimethylbenzene",""],["3295","노넨(트란스-3-)","Trans-3-nonene",""],["3295","n-트리데칸","Tridecane",""],["3295","1,4-펜타디엔","1,4-Pentadiene",""],["3295","네오펜틸벤젠","(2,2-Dimethyl-1-propyl)benzene",""],["3295","노닌(1-)","1-Nonyne",""],["3295","1-옥텐","1-Octene",""],["3295","1-노넨","1-Nonene",""],["3373","생물학적 물질, 범주 B","Biological substance, Category B","6.2"],["3481","리튬이온 배터리(장비 포함/포함된)","Lithium ion batteries (in/with equipment)","9"]]</script>
+
 <script>
 (function(){
-  if (window.__KBDG_FINAL__) return; window.__KBDG_FINAL__ = true;
-  const CONFIG = {
-    SERVICE_KEY: (document.querySelector('meta[name="data-go-kr-key"]')?.content || '').trim(),
-    API_URL: 'https://apis.data.go.kr/1192000/DgstInqire3/Info',
-    MOF_CSV_PATH: 'mof.csv'
-  };
+  const API_URL = 'https://apis.data.go.kr/1192000/DgstInqire3/Info';
+  const SERVICE_KEY = (document.querySelector('meta[name="data-go-kr-key"]')?.content || '').trim();
+  const TTL_MS = 1000*60*60*24*30;
+  const CACHE_KEY = 'IMDG_INFO_CACHE_v2';
 
-  // ===== Helpers =====
+  const elList = document.getElementById('list');
+  const elCount = document.getElementById('count');
+  const elQ = document.getElementById('q');
+  const elChips = document.getElementById('classChips');
+  const elGuide = document.getElementById('classGuide');
+
   const PUNCT=/[\s\-_"'`~!@#$%^&*()\[\]{};:,./?+|·<>％%]/g, COMB=/[\u0300-\u036f]/g;
   const norm = s => String(s??'').normalize('NFKC').toLowerCase().replace(COMB,'').replace(PUNCT,'');
-  function parseCSV(t){const r=[];let i=0,l=t.length,c='',R=[],q=!1;function pc(){R.push(c);c='';}function pr(){r.push(R);R=[];}
-    while(i<l){const h=t[i];if(q){if(h=='"'){if(t[i+1]=='"'){c+='"';i++;}else{q=!1;}}else{c+=h;}}else{if(h=='"'){q=!0;}else if(h==','){pc();}
-    else if(h=='\n'){pc();pr();}else if(h=='\r'){}else{c+=h;}}i++;}if(c!==''||R.length){pc();pr();}return r;}
-  const normalizeHeaders=hs=>hs.map(h=>norm(h).replace('un','유엔번호').replace('unnumber','유엔번호').replace('unno','유엔번호')
-    .replace('ko','한글물질명').replace('korean','한글물질명').replace('kor','한글물질명').replace('hangul','한글물질명')
-    .replace('name','영문물질명').replace('en','영문물질명').replace('english','영문물질명').replace('propershippingname','영문물질명').replace('psn','영문물질명')
-    .replace('class','위험등급').replace('hazardclass','위험등급'));
-  function pickIndex(H,T){for(let i=0;i<H.length;i++){if(T.some(t=>H[i].includes(t)))return i;}return -1;}
+  const clsColor = cls => `var(--c${String((cls||'').split('.')[0])})`;
+  function escapeHtml(s){ return String(s).replace(/[&<>"']/g, m=> ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[m]) ); }
 
-  // ===== Resolve actual data array used by UI =====
-  function resolveDataRef(){
-    try{ if (typeof data !== 'undefined' && Array.isArray(data)) return data; }catch(_){}
-    if (Array.isArray(window.data)) return window.data;
-    window.data = []; return window.data;
+  function iconHref(cls){
+    const s=String(cls||''); const base=s.split('.')[0];
+    return (base==='2' ? (s.includes('2.1')?'#i-flame': s.includes('2.3')?'#i-skull':'#i-gas')
+          : base==='4' ? (s.includes('4.3')?'#i-water':'#i-flamesolid')
+          : base==='5' ? (s.includes('5.2')?'#i-peroxide':'#i-oxidizer')
+          : base==='6' ? (s.includes('6.2')?'#i-biohazard':'#i-skull')
+          : base==='1' ? '#i-explosion'
+          : base==='3' ? '#i-flame'
+          : base==='7' ? '#i-radiation'
+          : base==='8' ? '#i-corrosive'
+          : base==='9' ? '#i-misc' : '#i-misc');
   }
 
-  // ===== CSV merge =====
-  function mergeCSVRows(rows, dataRef){
-    const H = normalizeHeaders(rows[0]||[]);
-    const iU=pickIndex(H,['유엔번호']), iK=pickIndex(H,['한글물질명','한글명','국문']), iE=pickIndex(H,['영문물질명','영문명']), iC=pickIndex(H,['위험등급']);
-    const key=o=>`${String(o.un).padStart(4,'0')}|${o.nameKo}|${o.nameEn}`; const seen=new Set(dataRef.map(key)); let added=0;
-    for(let r=1;r<(rows?.length||0);r++){
-      const row=rows[r]; if(!row||!row.length) continue;
-      const un=String(row[iU]||'').match(/\d{3,4}/)?.[0];
-      const nameKo=(row[iK]||'').toString().trim();
-      const nameEn=(row[iE]||'').toString().trim();
-      const cls=(iC>=0?(row[iC]||'').toString().trim():'');
-      if(!un||(!nameKo&&!nameEn)) continue;
-      const obj={un:String(un).padStart(4,'0'), nameKo, nameEn}; if(cls) obj.cls=cls;
-      const k=key(obj); if(!seen.has(k)){ dataRef.push(obj); seen.add(k); added++; }
-    }
-    return added;
+  let RAW = []; try{ RAW = JSON.parse(document.getElementById('mof-json').textContent)||[]; }catch(_){ RAW = []; }
+  RAW.forEach(a=> a[0] = String(a[0]).padStart(4,'0'));
+
+  const SEED = Object.fromEntries(RAW.map(a => [a[0], a[3]||'']));
+
+  const classMeta=[1,2,3,4,5,6,7,8,9].map(id=>({id, icon: ['','#i-explosion','#i-gas','#i-flame','#i-flamesolid','#i-oxidizer','#i-skull','#i-radiation','#i-corrosive','#i-misc'][id]}));
+  const activeClasses = new Set();
+  function renderChips(){
+    elChips.innerHTML='';
+    const all=document.createElement('div'); all.className='pill'; all.dataset.active = activeClasses.size===0; all.textContent='전체';
+    all.onclick=()=>{ activeClasses.clear(); doSearch(); }; elChips.appendChild(all);
+    classMeta.forEach(cm=>{
+      const chip=document.createElement('div'); chip.className='pill'; chip.dataset.active=activeClasses.has(String(cm.id));
+      chip.innerHTML=`<svg width="16" height="16" style="opacity:.9"><use href="${cm.icon}"/></svg> ${cm.id}`;
+      chip.onclick=()=>{ const id=String(cm.id); activeClasses.has(id)?activeClasses.delete(id):activeClasses.add(id); doSearch(); };
+      elChips.appendChild(chip);
+    });
   }
-  async function tryDecode(ab,enc){try{const td=new TextDecoder(enc);const text=td.decode(ab);return{enc,rows:parseCSV(text)}}catch(_){return{enc,rows:[]}}}
-  async function loadCSV(path, dataRef){
+  function renderClassGuide(){
+    elGuide.innerHTML='';
+    classMeta.forEach(cm=>{
+      const div=document.createElement('div'); div.className='class-card'; div.dataset.class=cm.id;
+      div.innerHTML=`
+        <div style="display:grid;place-items:center"><div class="diamond" data-class="${cm.id}"></div></div>
+        <div style="display:flex;gap:8px;align-items:center;justify-content:center"><svg width="18" height="18" style="color:var(--c${cm.id})"><use href="${cm.icon}"/></svg><div style="font-weight:700;text-align:center">Class ${cm.id}</div></div>
+        <div style="font-size:12px;color:var(--muted);text-align:center"></div>
+      `;
+      elGuide.appendChild(div);
+    });
+  }
+
+  function loadCache(){ try{ const s=localStorage.getItem(CACHE_KEY); if(!s) return {}; const obj=JSON.parse(s); const now=Date.now(); Object.keys(obj).forEach(k=>{ if(!obj[k]||!obj[k]._ts||(now-obj[k]._ts)>TTL_MS) delete obj[k]; }); return obj; }catch(_){ return {}; } }
+  function saveCache(c){ try{ localStorage.setItem(CACHE_KEY, JSON.stringify(c)); }catch(_){ } }
+  let CACHE = loadCache();
+
+  async function fetchInfo(un){
+    if(!SERVICE_KEY) return null;
     try{
-      const res = await fetch(path, {cache:'no-store'});
-      if(!res.ok) throw new Error(res.status+' '+res.statusText);
-      const ab = await res.arrayBuffer();
-      const tries = [await tryDecode(ab,'utf-8'), await tryDecode(ab,'euc-kr'), await tryDecode(ab,'ms949')];
-      const best = tries.sort((a,b)=> (b.rows?.length||0)-(a.rows?.length||0))[0];
-      const add = mergeCSVRows(best.rows||[], dataRef);
-      console.log(`[KBDG] CSV ${path} via ${best.enc}, +${add}, total=${dataRef.length}`);
-      if (add>0) window.render && window.render();
-    }catch(e){ console.warn('[KBDG] CSV load skipped:', e.message); }
-  }
-
-  // ===== API enrichment by UN =====
-  function qs(o){return Object.keys(o).map(k=>`${encodeURIComponent(k)}=${encodeURIComponent(o[k])}`).join('&');}
-  function mapItem(x){
-    const g=(o,ks)=>{for(const k of ks){if(o&&o[k]!=null&&String(o[k]).trim()!=='')return String(o[k]).trim();}return'';};
-    let un=g(x,['unno','unNo','UNNO','un']); let ko=g(x,['imdgNm','korName']); let en=g(x,['imdgEngNm','engName']); let cls=g(x,['imdgGradCd','class']);
-    if(un) un=(String(un).match(/\d{3,4}/)||[''])[0];
-    const obj={un:un?String(un).padStart(4,'0'):undefined, nameKo:ko||'', nameEn:en||'', cls:cls||''};
-    return (obj.un||obj.nameKo||obj.nameEn)?obj:null;
-  }
-  async function fetchUN(un){
-    if(!CONFIG.SERVICE_KEY || !CONFIG.API_URL) return null;
-    try{
-      const base = CONFIG.API_URL.replace(/\?+.*/, '');
-      const params = { serviceKey: CONFIG.SERVICE_KEY, pageNo: 1, numOfRows: 50, unno: un };
-      const url = `${base}?${qs(params)}`; // XML only
-      const res = await fetch(url, {cache:'no-store'});
-      if(!res.ok) throw new Error(res.status+' '+res.statusText);
+      const params = new URLSearchParams({serviceKey:SERVICE_KEY, pageNo:'1', numOfRows:'1', unno:un});
+      const res = await fetch(API_URL + '?' + params.toString(), {cache:'no-store'});
+      if(!res.ok) return null;
       const txt = await res.text();
       const xml = new DOMParser().parseFromString(txt, 'text/xml');
-      const items = Array.from(xml.getElementsByTagName('item')).map(n=>{const o={}; Array.from(n.children).forEach(c=>o[c.tagName]=c.textContent); return o;});
-      return items.map(mapItem).filter(Boolean);
-    }catch(e){ console.warn('[KBDG] API fetch failed:', e.message); return null; }
-  }
-  async function fetchGithubUN(un){
-    try{
-      const res=await fetch(`https://raw.githubusercontent.com/tantalor/un/master/data/${String(un).padStart(4,'0')}.json`,{cache:'no-store'});
-      if(!res.ok) return null; const j=await res.json();
-      return [{un:String(un).padStart(4,'0'), nameKo:'', nameEn:(j.description||j.name||''), cls:(j.class||'')}];
+      const it = xml.getElementsByTagName('item')[0];
+      if(!it) return null;
+      const get = t => (it.getElementsByTagName(t)[0]?.textContent || '').trim();
+      return { unno:get('unno'), imdgNm:get('imdgNm'), imdgEngNm:get('imdgEngNm'), imdgGradCd:get('imdgGradCd'), subImdgGradDc:get('subImdgGradDc'), packngGrad:get('packngGrad') };
     }catch(_){ return null; }
   }
-  function dedupMerge(list, dataRef){
-    const key=o=>`${String(o.un||'').padStart(4,'0')}|${o.nameKo||''}|${o.nameEn||''}`;
-    const seen=new Set(dataRef.map(key)); let merged=0;
-    for(const o of (list||[])){ if(!o||!o.un) continue; const k=key(o); if(!seen.has(k)){ dataRef.push(o); seen.add(k); merged++; } }
-    if(merged>0) window.render && window.render();
-    return merged;
-  }
 
-  // ===== Render override using dataRef (UI unchanged) =====
-  function installRenderOverride(dataRef){
-    try{
-      const elQ = document.getElementById('q');
-      const elList = document.getElementById('list');
-      const elCount = document.getElementById('count');
-
-      function hay(d){ return norm([d.un,d.nameKo,d.nameEn,`un${d.un}`,`un-${d.un}`,`un ${d.un}`].filter(Boolean).join(' ')); }
-      const cache = new WeakMap(); const getHay = d => (cache.has(d)?cache.get(d):(cache.set(d,hay(d)),cache.get(d)));
-      function matchItem(d,qRaw){
-        if(!qRaw) return true;
-        const H=getHay(d), qn=norm(qRaw);
-        if(H.includes(qn)) return true;
-        const tokens=qRaw.trim().split(/\s+/).map(norm).filter(Boolean);
-        return tokens.length?tokens.every(t=>H.includes(t)):true;
-      }
-
-      const origRender = window.render;
-      window.render = function(){
-        const q = (elQ?.value||'').trim();
-        const filtered = dataRef.filter(d=>{
-          const classOk = (typeof activeClasses!=='undefined' ? (activeClasses.size===0 || activeClasses.has(String((d.cls+'').split('.')[0]))) : true);
-          return classOk && matchItem(d,q);
-        }).sort((a,b)=>{
-          const nq = norm(q);
-          const aExact = nq && norm(String(a.un))===nq;
-          const bExact = nq && norm(String(b.un))===nq;
-          if(aExact && !bExact) return -1;
-          if(bExact && !aExact) return 1;
-          return String(a.un).localeCompare(String(b.un));
-        });
-
-        if(elList){
-          elList.innerHTML='';
-          filtered.forEach(item=> elList.appendChild(card(item)));
-        }
-        if(elCount) elCount.textContent = `${filtered.length}건`;
-      };
-
-      // Ensure ours runs after any existing input listeners
-      const elQ2 = document.getElementById('q');
-      if(elQ2) elQ2.addEventListener('input', ()=> window.render());
-      window.render();
-    }catch(e){ console.warn('[KBDG] render override failed:', e.message); }
-  }
-
-  // ===== Boot =====
-  document.addEventListener('DOMContentLoaded', async function(){
-    const dataRef = resolveDataRef();
-    // 1) CSV load
-    loadCSV(CONFIG.MOF_CSV_PATH, dataRef);
-    // 2) Override render
-    installRenderOverride(dataRef);
-    // 3) UN enrichment when user types an UN not present
-    const elQ = document.getElementById('q');
-    if(elQ){
-      let t=null;
-      elQ.addEventListener('input', e=>{
-        clearTimeout(t);
-        const v = e.target.value;
-        const m = String(v).match(/^\s*(?:un\s*-?\s*)?(\d{3,4})\s*$/i);
-        if(!m) return;
-        const un = m[1].padStart(4,'0');
-        if(dataRef.some(d=>String(d.un).padStart(4,'0')===un)) return;
-        t = setTimeout(async ()=>{
-          let rows = await fetchUN(un);
-          if((!rows||!rows.length)) rows = await fetchGithubUN(un);
-          if(rows && rows.length) dedupMerge(rows, dataRef);
-        }, 300);
-      });
+  const MAX_CONCURRENCY = 8;
+  let inflight = 0, Q=[]; const enqueued=new Set();
+  function enqueue(un, priority=0){ if(!un||enqueued.has(un)||CACHE[un]) return; enqueued.add(un); Q.push({un,priority}); Q.sort((a,b)=> b.priority-a.priority); pump(); }
+  function pump(){
+    while(inflight<MAX_CONCURRENCY && Q.length){
+      const {un} = Q.shift(); inflight++;
+      fetchInfo(un).then(info=>{
+        if(info){ CACHE[un]=Object.assign({_ts:Date.now()}, info); saveCache(CACHE); updateCard(un, info); }
+      }).catch(()=>{}).finally(()=>{ inflight--; pump(); });
     }
-  });
+  }
+
+  function labelBadge(text, cls){ const d=document.createElement('div'); d.className='tag-sm'; const c=clsColor(cls); d.style.borderColor=c; d.style.color=c; d.textContent=text; return d; }
+  function applyLabels(container, info){
+    container.innerHTML='';
+    const labels=[]; const base=info.imdgGradCd||''; const subs=(info.subImdgGradDc||'').split(',').map(s=>s.trim()).filter(Boolean);
+    if(base) labels.push(base); subs.forEach(s=>{ if(!labels.includes(s)) labels.push(s); });
+    if(!labels.length){ container.textContent='—'; return; }
+    labels.forEach(lb=> container.appendChild(labelBadge(`Label ${lb}`, lb)));
+  }
+
+  function updateCard(un, info){
+    const node=document.querySelector(`[data-un="${un}"]`); if(!node) return;
+    const color=clsColor(info.imdgGradCd);
+    const icUse=node.querySelector('.icon use'); if(icUse) icUse.setAttribute('href', iconHref(info.imdgGradCd));
+    const iconWrap=node.querySelector('.icon'); if(iconWrap) iconWrap.style.color=color;
+    const tag=node.querySelector('.tag-sm'); if(tag){ tag.textContent=`Class ${info.imdgGradCd}`; tag.style.borderColor=color; tag.style.color=color; }
+    const diamond=node.querySelector('.diamond'); if(diamond){ diamond.setAttribute('data-class', String(info.imdgGradCd).split('.')[0]); const num=diamond.querySelector('.num'); if(num) num.textContent=info.imdgGradCd; }
+    const pg=node.querySelector('.pg'); if(pg) pg.textContent = info.packngGrad || '—';
+    const labels=node.querySelector('.labels'); if(labels) applyLabels(labels, info);
+  }
+
+  function renderCard(a){
+    const [un, nameKo, nameEn, clsSeed] = a;
+    const info=CACHE[un];
+    const cls = info?.imdgGradCd || clsSeed || SEED[un] || '';
+    const color = clsColor(cls);
+    const href = iconHref(cls);
+    const node=document.createElement('details');
+    node.className='card'; node.dataset.un=un; node.dataset.class=String((cls||'').split('.')[0]);
+    node.innerHTML = `
+      <summary class="top" style="list-style:none;cursor:pointer">
+        <div class="icon" style="color:${color}"><svg aria-hidden="true"><use href="${href}"/></svg></div>
+        <div class="meta">
+          <div class="un">UN ${un} · <span class="tag-sm" style="border-color:${color};color:${color}">Class ${cls||'—'}</span></div>
+          <div class="name">${escapeHtml(nameKo||'')}</div>
+          <div class="eng">${escapeHtml(nameEn||'')}</div>
+        </div>
+        <button class="btn" title="UN 번호 복사" onclick="navigator.clipboard?.writeText('UN ${un}'); event.preventDefault(); event.stopPropagation();">
+          <svg width="16" height="16" style="opacity:.9"><use href="#i-copy"/></svg>
+        </button>
+      </summary>
+      <div class="detail">
+        <div class="kv"><div class="key">포장그룹</div><div class="val pg">${info?.packngGrad || '—'}</div></div>
+        <div class="kv"><div class="key">라벨</div><div class="val labels" style="display:flex;gap:8px;flex-wrap:wrap">${info?.imdgGradCd ? '' : '—'}</div></div>
+      </div>
+    `;
+    node.addEventListener('toggle', ()=>{ if(node.open && !CACHE[un]) enqueue(un, 100); });
+    return node;
+  }
+
+  function renderList(list){
+    const frag=document.createDocumentFragment();
+    list.forEach(a=> frag.appendChild(renderCard(a)));
+    elList.innerHTML=''; elList.appendChild(frag);
+    elCount.textContent = `${list.length}건`;
+  }
+
+  function doSearch(){
+    const q = norm(elQ.value||''); const classes=new Set([...activeClasses]);
+    const res = RAW.filter(a=>{
+      const base = String((a[3]||'').split('.')[0]);
+      const okCls = classes.size===0 || classes.has(base);
+      if(!okCls) return false;
+      if(!q) return true;
+      const hay = norm([a[0], a[1], a[2], 'un'+a[0], 'un-'+a[0]].join(' '));
+      return hay.includes(q);
+    }).sort((A,B)=> String(A[0]).localeCompare(String(B[0])));
+    renderList(res);
+    res.slice(0, 50).forEach(a=> enqueue(a[0], 10));
+  }
+
+  RAW.forEach(a=> enqueue(a[0], 1));
+  renderChips(); renderClassGuide();
+  renderList(RAW);
+  elQ.addEventListener('input', doSearch);
 })();
 </script>
 
